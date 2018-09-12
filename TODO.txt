@@ -6,5 +6,6 @@ npm install --save-dev electron
 LOG: 		C:\Users\dufet\AppData\Roaming\npm-cache\_logs
 TUTO:		https://electronjs.org/docs/tutorial/first-app
 		https://developer.mozilla.org/fr/docs/Learn/JavaScript/Objects/JS_orient%C3%A9-objet
+		http://www.flavienbeninca.fr/2016/10/04/electron-creer-une-application-native-en-html-js.html
 OLD_TUTO:	https://zestedesavoir.com/tutoriels/996/vos-applications-avec-electron/#1-installer-electron
 		http://www.flavienbeninca.fr/2016/10/04/electron-creer-une-application-native-en-html-js.html
