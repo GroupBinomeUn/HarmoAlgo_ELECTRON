@@ -1,0 +1,60 @@
+html,
+body {
+	width: 100%;
+	min-heigth: 100vh;
+}
+a {
+	text-decoration: none;
+	color: #ff00e9;
+}
+a:hover{
+	font-weight: bold;
+	color: #ca41f4;
+}
+
+/* ---------------*/
+/* --- Header --- */
+/* ---------------*/
+header nav {
+	background: linear-gradient(0.25turn, #41f47f, #6af2f2);
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+header ul {
+	margin: auto;
+	display: flex;
+	flex-direction: row;
+}
+
+header li {
+	font-size: 1.2rem;
+	padding: 10px;
+	decoration: none;
+}
+
+/* -------------*/
+/* --- Body --- */
+/* -------------*/
+main {
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	
+}
+main h3 {
+	margin: auto;
+	padding: 1rem 0 1rem 0;
+	font-size: 10vw;
+}
+main img {
+	width: 40vw;
+	height: auto;
+	padding: 1rem 0 1rem 0;
+}
+	
+	
