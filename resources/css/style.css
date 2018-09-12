@@ -5,11 +5,9 @@ body {
 }
 a {
 	text-decoration: none;
-	color: #ff00e9;
 }
 a:hover{
 	font-weight: bold;
-	color: #ca41f4;
 }
 
 /* ---------------*/
