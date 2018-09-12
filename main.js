@@ -6,9 +6,9 @@ const BrowserWindow = electron.BrowserWindow;
 let mainWindow;
 
 function createWindow () {
-
-  mainWindow = new BrowserWindow({width: 1800, height: 1200}); // on définit une taille pour notre fenêtre
-
+  // on définit une taille pour notre fenêtre
+  //mainWindow = new BrowserWindow({width: 1800, height: 1200});
+  mainWindow = new BrowserWindow({fullscreen: true})
   //mainWindow.loadURL(`file://${__dirname}/index.html`); // on doit charger un chemin absolu
   mainWindow.loadFile('index.html')
 

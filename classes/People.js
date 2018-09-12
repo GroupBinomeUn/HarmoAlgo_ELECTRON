@@ -12,10 +12,7 @@ class Peoples {
 
     //méthodes
     get getId(){
-        return this.id();
-    }
-    set setId(id){
-        this.id = id;
+        return this.id;
     }
 
     get getLastName(){
