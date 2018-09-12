@@ -1,13 +1,14 @@
-html,
-body {
-	width: 100%;
-	min-heigth: 100vh;
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+html{
+	font-family: 'Montserrat', sans-serif; 
 }
-a {
+
+a{
+	color: black;
 	text-decoration: none;
 }
 a:hover{
-	font-weight: bold;
+	text-decoration: underline;
 }
 
 /* ---------------*/
@@ -54,5 +55,4 @@ main img {
 	height: auto;
 	padding: 1rem 0 1rem 0;
 }
-	
 	
