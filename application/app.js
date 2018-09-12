@@ -7,12 +7,6 @@ lePeople.setFirstName = "François";
 alert(lePeople.getFirstName);
 
 var contacts = [];
-var lePeople = new Peoples("1", "Dufaure", "Romain", "0102030405", "Paris", "75000", "5 rue des mimosa");
-var lePeople2 = new Peoples("2", "Dufaure", "Damien", "0102030405", "Paris", "75000", "5 rue des mimosa");
+var lePeople = new Peoples("1", "George", "Pompidou", "0102030405", "Paris", "75000", "5 rue des Mimosa");
+var lePeople2 = new Peoples("2", "Dumas", "François", "0102030405", "Paris", "75000", "12 avenue Paul Maudit");
 contacts.push(lePeople, lePeople2);
-
-for(var index in contacts) { 
-    if (contacts.hasOwnProperty(index)) {
-      console.log("<p>" + contacts[index].getLastName + "</p>");
-    }
-}
