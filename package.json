@@ -1,0 +1,28 @@
+{
+  "name": "harmoalgo_electron",
+  "version": "1.0.0",
+  "description": "carnet d'adresses",
+  "main": "index.js",
+  "scripts": {
+    "test": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GroupBinomeUn/HarmoAlgo_ELECTRON.git"
+  },
+  "keywords": [
+    "electron",
+    "carnet",
+    "d'adresse",
+    "javascript"
+  ],
+  "author": "I-WIN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GroupBinomeUn/HarmoAlgo_ELECTRON/issues"
+  },
+  "homepage": "https://github.com/GroupBinomeUn/HarmoAlgo_ELECTRON#readme",
+  "devDependencies": {
+    "electron": "^2.0.9"
+  }
+}
