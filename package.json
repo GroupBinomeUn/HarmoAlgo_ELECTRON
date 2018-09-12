@@ -2,9 +2,9 @@
   "name": "harmoalgo_electron",
   "version": "1.0.0",
   "description": "carnet d'adresses",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "electron ."
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
@@ -12,8 +12,7 @@
   },
   "keywords": [
     "electron",
-    "carnet",
-    "d'adresse",
+    "carnet d'adresse",
     "javascript"
   ],
   "author": "I-WIN",
