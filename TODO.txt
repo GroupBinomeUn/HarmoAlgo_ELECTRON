@@ -3,4 +3,5 @@ npm install electron --save-dev
 npm install --save-dev electron
 
 
-LOG: C:\Users\dufet\AppData\Roaming\npm-cache\_logs
+LOG: 	C:\Users\dufet\AppData\Roaming\npm-cache\_logs
+TUTO:	https://electronjs.org/docs/tutorial/first-app
