@@ -1,5 +1,5 @@
 class Peoples {
-    //constructeur
+    //Constructor
     constructor(id, lastName, firstName, phone, city, postalCode, address) {
         this.id = id;
         this.lastName = lastName;
@@ -10,12 +10,9 @@ class Peoples {
         this.address = address;
     }
 
-    //méthodes
+    //Get / Set
     get getId(){
         return this.id();
-    }
-    set setId(id){
-        this.id = id;
     }
 
     get getLastName(){
@@ -56,7 +53,7 @@ class Peoples {
     get getAddress(){
         return this.address;
     }
-    set setPostalCode(address){
+    set setAddress(address){
         this.address = address;
     }
 }

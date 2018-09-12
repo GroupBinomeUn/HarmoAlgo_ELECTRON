@@ -1,14 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 html{
-	font-family: 'Montserrat', sans-serif; 
+  font-family: 'Montserrat', sans-serif;
 }
-
 a{
 	color: black;
 	text-decoration: none;
 }
 a:hover{
-	text-decoration: underline;
+	padding: 2px;
+	color: white;
+	border: 1px solid pink;
+	border-radius: 5px;
+	box-shadow: 5px 5px 5px fuchsia;
+	background: linear-gradient(0.25turn, #222222, #22efff);
 }
 
 /* ---------------*/
@@ -30,7 +34,6 @@ header ul {
 header li {
 	font-size: 1.2rem;
 	padding: 10px;
-	decoration: none;
 }
 
 /* -------------*/
@@ -43,16 +46,27 @@ main {
 	align-items: center;
 	justify-content: center;
 	text-align: center;
+	min-height: 70vh;
 	
 }
 main h3 {
 	margin: auto;
 	padding: 1rem 0 1rem 0;
-	font-size: 10vw;
+	font-size: 8vw;
+	max-width: 500px;
 }
 main img {
 	width: 40vw;
+	min-width: 200px;
+	max-width: 400px;
 	height: auto;
-	padding: 1rem 0 1rem 0;
+	padding: 1rem;
+}
+
+footer {
+	width: 100%;
+  bottom: 0;
+	margin: auto;
+	text-align: center;
 }
 	
