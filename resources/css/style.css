@@ -1,72 +1,216 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 html{
   font-family: 'Montserrat', sans-serif;
 }
+
+body{
+	/* -webkit-app-region: drag; /* permet le déplacement de la fenêtre sans bordure */
+}
+
 a{
 	color: black;
 	text-decoration: none;
 }
-a:hover{
-	padding: 2px;
+
+input[type=text]{
+	border: 1px solid black;
+}
+
+input[type=submit], button{
+	border: 1px solid black;
+	padding: 5px 15px;
+	font-weight: bold;
+	transition: all 0.2s ease-out;
+}
+input[type=submit]:hover, button:hover{
+	background: grey;
 	color: white;
-	border: 1px solid pink;
-	border-radius: 5px;
-	box-shadow: 5px 5px 5px fuchsia;
-	background: linear-gradient(0.25turn, #222222, #22efff);
+	transition: all 0.2s ease-out;
+}
+input[type=submit]:active, button:active{
+	box-shadow: 0px 0px 15px black inset;
+	transition: all 0s ease-out;
 }
 
 /* ---------------*/
 /* --- Header --- */
 /* ---------------*/
-header nav {
-	background: linear-gradient(0.25turn, #41f47f, #6af2f2);
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-}
-header ul {
-	margin: auto;
-	display: flex;
-	flex-direction: row;
+body header .icon{
+  width: 1em;
+  height: 1em;
 }
 
-header li {
+body header{
+	position: sticky;
+	top: 0;
+	background: #eeeeee;
+	border-bottom: 1px solid grey;
+	border-top: 1px solid grey;
+}
+
+nav {
+	display: flex;
+	flex-wrap: wrap;
+  flex-direction: row;
+}
+
+nav a{
+	display: flex;
+	padding: 0.5em 0.8em;
+	transition: all 0.2s ease-out;
+}
+
+nav a:hover{
+	color: white;
+	background: #acacac;
+	transition: all 0.2s ease-out;
+}
+
+body header ul {
+	margin: auto;
+	display: flex;
+}
+
+body header li {
 	font-size: 1.2rem;
-	padding: 10px;
 }
 
 /* -------------*/
 /* --- Body --- */
 /* -------------*/
 main {
-	text-align: center;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
 	min-height: 70vh;
-	
+	color: black;
 }
 main h3 {
-	margin: auto;
 	padding: 1rem 0 1rem 0;
 	font-size: 8vw;
-	max-width: 500px;
 }
 main img {
-	width: 40vw;
-	min-width: 200px;
-	max-width: 400px;
-	height: auto;
-	padding: 1rem;
+	width: 25vw;
+	padding: 2rem;
+}
+
+section{
+	margin: 25px auto;
+	width: 75%;
+}
+section .icon{
+	display: flex;
+    width: 2em;
+    height: 2em;
+	padding: 5px;
+	padding-left: 7px;
+    border: 1px solid black;
+    background: #acacac;
+    color: white;
+	transition: all 0.2s ease-out;
+}
+section .icon:hover{
+	transition: all 0.2s ease-out;
+    color: black;
+    background: #eeeeee;
+}
+
+h1{
+	font-size: 2em;
+	font-weight: bold;
+	border-bottom: 5px solid black;
+	margin-bottom: 15px;
+}
+
+table{
+	margin: 15px auto;
+	border: 1px solid black;
+	width: 100%;
+}
+th{
+	font-weight: bold;
+	background: black;
+	color: white;
+}
+td{
+	background: #e0e0e0;
+}
+th, td {
+	padding: 15px;
+	text-align: left;
+	border-bottom: 1px solid black;
+}
+tr td{
+	transition: all 0.2s ease-out;
+}
+tr:hover td{
+	background: #acacac;
+	transition: all 0.2s ease-out;
+}
+
+section input[type=text]{
+	width: 50%;
 }
 
 footer {
-	width: 100%;
-  bottom: 0;
+	border-top: 1px solid grey;
+	background: #acacac;
+	bottom: 0;
+	padding: 50px;
 	margin: auto;
 	text-align: center;
 }
 	
+/* -------------*/
+/* -- Dialog -- */
+/* -------------*/
+#dialog{
+	/*display: none;*/
+	border: 1px solid black;
+	width: 500px;
+	position: fixed;
+	margin: auto;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	box-shadow: 0px 0px 15px black;
+}
+#dialog .header{
+	position: relative;
+	height: 30px;
+	background: grey;
+	padding: 5px;
+	border-bottom: 1px solid black;
+}
+#dialog .body{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: left;
+	background: #acacac;
+	padding: 5px;
+}
+#dialog #titre{
+	text-transform: uppercase;
+}
+#dialog .close{
+	cursor: pointer;
+	border-radius: 5px;
+	float: right;
+	padding: 5px;
+	border: 1px solid black;
+	background: black;
+	color: white;
+	transition: all 0.2s ease-out;
+}
+#dialog .close:hover{
+	background: red;
+	transition: all 0.2s ease-out;
+}
+#dialog input[type=text]{
+	padding: 5px;
+	width: 100%;
+	margin: 5px auto;
+}
