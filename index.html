@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="resources/svg/style.css">
 		<script defer src="resources/svg/svgxuse.js"></script>
 		<!-- Script à importer -->
+		<script src="classes/Global.js" type="text/javascript"></script>
 		<script src="classes/People.js" type="text/javascript"></script>
 		<script src="application/app.js" type="text/javascript"></script>
 		<script src="application/functions.js" type="text/javascript"></script>
@@ -24,7 +25,7 @@
 			<nav>
 				<ul>
 					<li>
-						<a href="#" title="Home" >
+						<a id="up" href="#" title="Home" >
 							<svg class="icon icon-home"><use xlink:href="#icon-home"></use></svg>
 						</a>
 					</li>
@@ -44,17 +45,17 @@
 						</a>
 					</li>
 					<li>
-						<a href="#add" title="Ajouter contact" >
+						<a title="Ajouter contact" id="menu_addContact" >
 							<svg class="icon icon-address-book"><use xlink:href="#icon-address-book"></use></svg>
 						</a>
 					</li>
 					<li>
-						<a href="#list" title="Rechercher contact" >
+						<a id="serach_list" title="Rechercher contact" >
 							<svg class="icon icon-search"><use xlink:href="#icon-search"></use></svg>
 						</a>
 					</li>
 					<li>
-						<a href="#del" title="Supprimer contact" >
+						<a id="del_contact" title="Supprimer contact" >
 							<svg class="icon icon-bin"><use xlink:href="#icon-bin"></use></svg>
 						</a>
 					</li>
@@ -70,21 +71,11 @@
 		<section id="list" >
 			<h1>Liste des contacts</h1>
 			<input type="text" id="search" class="" placeholder="" />
-			<table>
+			<table id ="list_Peoples">
 				<tr>
-						<th>ID</th><th>Nom</th><th>Prenom</th><th>Téléphone</th><th>Ville</th><th>Code postal</th><th>Adresse</th><th></th>
+					<th>ID</th><th>Nom</th><th>Prenom</th><th>Téléphone</th><th>Ville</th><th>Code postal</th><th>Adresse</th><th></th>
 				</tr>
-				<script id="list-contact" >
-					for(var index in listContact) { 
-						if (listContact.hasOwnProperty(index)) {
-							var btnDel = '<svg title="Supprimer" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
-							var temp = "<tr><td>" + listContact[index].getId +  "</td><td>" + listContact[index].getLastName + "</td><td>" + listContact[index].getFirstName + "</td><td>" + listContact[index].getPhone + "</td><td>" + listContact[index].getCity + "</td><td>" + listContact[index].getPostalCode + "</td><td>" + listContact[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
-							document.open();
-							document.write(temp);
-							document.close();
-						}
-					}
-				</script>
+				<tr><td colspan="8" >...</td></tr>
 			</table>
 			<div>
 				<svg id="addContact" title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg>
@@ -99,11 +90,11 @@
 			<div class="body" >
 				<input id="lastName" type="text" placeholder="Nom" maxlength="30" required="required">
 				<input id="firstName" type="text" placeholder="Prénom" maxlength="30" required="required">
-				<input id="phone" type="text" placeholder="Portable" maxlength="30" required="required">
+				<input id="phone" step="1" min="0" type="number" placeholder="Portable" maxlength="30" required="required">
 				<input id="city" type="text" placeholder="Ville" maxlength="50" required="required">
-				<input id="postalCode" type="text" placeholder="Code Postal" maxlength="5" required="required">
+				<input id="postalCode" step="1" min="0" type="number" placeholder="Code Postal" maxlength="5" required="required">
 				<input id="address" type="text" placeholder="Adresse" maxlength="30" required="required">
-				<input id="submit" type="submit" value="Ajouter" />
+				<input id="submit" type="submit" value="Ajouter" /> <input id="reset" type="reset" value="Effacer" />
 			</div>
 		</div>
 		

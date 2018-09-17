@@ -11,24 +11,26 @@ body{
 a{
 	color: black;
 	text-decoration: none;
+	cursor: pointer;
 }
 
-input[type=text]{
+input[type=text], input[type=number]{
 	border: 1px solid black;
 }
 
-input[type=submit], button{
+input[type=submit], button, input[type=reset]{
 	border: 1px solid black;
 	padding: 5px 15px;
 	font-weight: bold;
+	margin-right: 5px;
 	transition: all 0.2s ease-out;
 }
-input[type=submit]:hover, button:hover{
+input[type=submit]:hover, button:hover, input[type=reset]:hover{
 	background: grey;
 	color: white;
 	transition: all 0.2s ease-out;
 }
-input[type=submit]:active, button:active{
+input[type=submit]:active, button:active, input[type=reset]:active{
 	box-shadow: 0px 0px 15px black inset;
 	transition: all 0s ease-out;
 }
@@ -47,6 +49,10 @@ body header{
 	background: #eeeeee;
 	border-bottom: 1px solid grey;
 	border-top: 1px solid grey;
+}
+
+#{
+	height: 622px;
 }
 
 nav {
@@ -162,8 +168,11 @@ tr:hover td{
 	background: #acacac;
 	transition: all 0.2s ease-out;
 }
+td{
+	vertical-align: middle;
+}
 
-section input[type=text]{
+section input[type=text], section input[type=number]{
 	width: 50%;
 }
 
@@ -221,7 +230,7 @@ footer {
 	background: red;
 	transition: all 0.2s ease-out;
 }
-#dialog input[type=text]{
+#dialog input[type=text], #dialog input[type=number]{
 	padding: 5px;
 	width: 100%;
 	margin: 5px auto;
