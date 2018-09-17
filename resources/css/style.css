@@ -80,6 +80,8 @@ body header li {
 /* --- Body --- */
 /* -------------*/
 main {
+	top: 0;
+	height: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -102,6 +104,7 @@ section{
 	width: 75%;
 }
 section .icon{
+	cursor: pointer;
 	display: flex;
     width: 2em;
     height: 2em;
@@ -114,7 +117,16 @@ section .icon{
 }
 section .icon:hover{
 	transition: all 0.2s ease-out;
-    color: black;
+    background: #eeeeee;
+}
+section .bin:hover{
+	transition: all 0.2s ease-out;
+    color: red;
+    background: #eeeeee;
+}
+section .add:hover{
+	transition: all 0.2s ease-out;
+    color: green;
     background: #eeeeee;
 }
 
@@ -168,7 +180,7 @@ footer {
 /* -- Dialog -- */
 /* -------------*/
 #dialog{
-	/*display: none;*/
+	display: none;
 	border: 1px solid black;
 	width: 500px;
 	position: fixed;
@@ -180,9 +192,8 @@ footer {
 }
 #dialog .header{
 	position: relative;
-	height: 30px;
+	height: 26px;
 	background: grey;
-	padding: 5px;
 	border-bottom: 1px solid black;
 }
 #dialog .body{
@@ -193,19 +204,20 @@ footer {
 	padding: 5px;
 }
 #dialog #titre{
+	position: absolute;
+	margin: 5px;
 	text-transform: uppercase;
 }
-#dialog .close{
+#dialog #close{
 	cursor: pointer;
-	border-radius: 5px;
 	float: right;
 	padding: 5px;
-	border: 1px solid black;
+	border-left: 1px solid black;
 	background: black;
 	color: white;
 	transition: all 0.2s ease-out;
 }
-#dialog .close:hover{
+#dialog #close:hover{
 	background: red;
 	transition: all 0.2s ease-out;
 }

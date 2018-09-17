@@ -13,36 +13,33 @@
 		<script src="application/app.js" type="text/javascript"></script>
 		<script src="application/functions.js" type="text/javascript"></script>
 		<!-- main height auto -->
-		<script type="text/javascript">
-			function chargSetHeightMain(){
-				var getHeight = (document.body.clientHeight);
-				document.getElementById('first-main').style.height = getHeight + 'px';
-			}
-			
-			//setInterval(chargSetHeightMain, 500);
-		</script>
 	</head>	
-	<body>
+	<body> 
+		<main id='first-main' >
+			<h3>Carnet d'adresses</h3>
+			<img src="resources/svg/SVG/address-book1.svg" />
+		</main>
+		
 		<header>
 			<nav>
 				<ul>
 					<li>
-						<a href="index.html" title="Home" >
+						<a href="#" title="Home" >
 							<svg class="icon icon-home"><use xlink:href="#icon-home"></use></svg>
 						</a>
 					</li>
 					<li>
-						<a href="#" title="Actualiser" >
+						<a href="index.html" title="Actualiser" >
 							<svg class="icon icon-loop"><use xlink:href="#icon-loop"></use></svg>
 						</a>
 					</li>
 					<li>
-						<a href="views/test.html" title="Charger" >
+						<a id="load_file" title="Charger" >
 							<svg class="icon icon-upload"><use xlink:href="#icon-upload"></use></svg>
 						</a>
 					</li>
 					<li>
-						<a href="#" title="Sauvegarder" >
+						<a id="save_file" title="Sauvegarder" >
 							<svg class="icon icon-download"><use xlink:href="#icon-download"></use></svg>
 						</a>
 					</li>
@@ -62,20 +59,14 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" title="Quitter" >
+						<a href="#" id="close_app" title="Quitter" >
 							<svg class="icon icon-exit"><use xlink:href="#icon-exit"></use></svg>
 						</a>
 					</li>
 				</ul>
 			</nav>
 		</header>
-
-		<main id='first-main' >
-			<h3>Carnet d'adresses</h3>
-			<!-- <img src="resources/img/book.png"> -->
-			<img src="resources/svg/SVG/address-book1.svg" />
-		</main>
-
+		
 		<section id="list" >
 			<h1>Liste des contacts</h1>
 			<input type="text" id="search" class="" placeholder="" />
@@ -86,7 +77,7 @@
 				<script id="list-contact" >
 					for(var index in listContact) { 
 						if (listContact.hasOwnProperty(index)) {
-							var btnDel = '<a href="#" title="Supprimer" ><svg class="icon icon-bin"><use xlink:href="#icon-bin"></use></svg></a>';
+							var btnDel = '<svg title="Supprimer" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
 							var temp = "<tr><td>" + listContact[index].getId +  "</td><td>" + listContact[index].getLastName + "</td><td>" + listContact[index].getFirstName + "</td><td>" + listContact[index].getPhone + "</td><td>" + listContact[index].getCity + "</td><td>" + listContact[index].getPostalCode + "</td><td>" + listContact[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
 							document.open();
 							document.write(temp);
@@ -96,16 +87,14 @@
 				</script>
 			</table>
 			<div>
-				<a href="#" id="addContact" title="Ajouter un contact" >
-					<svg class="icon icon-user-plus"><use xlink:href="#icon-user-plus"></use></svg>
-				</a>
+				<svg id="addContact" title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg>
 			</div>
 		</section>
 
         <div id="dialog" >
 			<div class="header" >
-				<span id="titre" >Test</span>
-				<span class="close" >X</span>
+				<span id="titre" >Ajout d'un contact</span>
+				<span id="close" >X</span>
 			</div>
 			<div class="body" >
 				<input id="lastName" type="text" placeholder="Nom" maxlength="30" required="required">
@@ -124,7 +113,8 @@
 
 		<script>
 		  // You can also require other files to run in this process
-		  require('./renderer.js')
+		  require('./classes/People.js');
+		  require('./renderer.js');
 		</script>
 	</body>
 </html>
