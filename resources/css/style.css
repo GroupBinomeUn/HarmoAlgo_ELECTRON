@@ -168,7 +168,7 @@ footer {
 /* -- Dialog -- */
 /* -------------*/
 #dialog{
-	/*display: none;*/
+	display: none;
 	border: 1px solid black;
 	width: 500px;
 	position: fixed;
