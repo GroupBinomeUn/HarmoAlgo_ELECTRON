@@ -78,24 +78,32 @@
 				<tr><td colspan="8" >...</td></tr>
 			</table>
 			<div>
-				<svg id="addContact" title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg>
+				<svg id="svg_addContact" title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg>
 			</div>
 		</section>
 
         <div id="dialog" >
-			<div class="header" >
+			<div class="headerAddContact" >
 				<span id="titre" >Ajout d'un contact</span>
 				<span id="close" >X</span>
 			</div>
-			<div class="body" >
-				<input id="lastName" type="text" placeholder="Nom" maxlength="30" required="required">
-				<input id="firstName" type="text" placeholder="Prénom" maxlength="30" required="required">
-				<input id="phone" step="1" min="0" type="number" placeholder="Portable" maxlength="30" required="required">
-				<input id="city" type="text" placeholder="Ville" maxlength="50" required="required">
-				<input id="postalCode" step="1" min="0" type="number" placeholder="Code Postal" maxlength="5" required="required">
-				<input id="address" type="text" placeholder="Adresse" maxlength="30" required="required">
-				<input id="submit" type="submit" value="Ajouter" /> <input id="reset" type="reset" value="Effacer" />
-			</div>
+			<div class="bodyAddContact">
+				<input id="lastName" type="text" placeholder="Nom" maxlength="30">
+				<p id="text_lastName"></p>
+				<input id="firstName" type="text" placeholder="Prénom" maxlength="30">
+				<p id="text_firstName"></p>
+				<input id="phone" step="1" min="0" type="number" placeholder="Portable" onkeydown="javascript: return event.keyCode == 69 ? false : true">
+				<p id="text_phone"></p>
+				<input id="city" type="text" placeholder="Ville" maxlength="50">
+				<p id="text_city"></p>
+				<input id="postalCode" step="1" min="0" type="number" placeholder="Code Postal"  onkeydown="javascript: return event.keyCode == 69 ? false : true">
+				<p id="text_postalCode"></p>
+				<input id="address" type="text" placeholder="Adresse" maxlength="30">
+				<p id="text_address"></p>
+			</div>	
+				<input id="btn_addContact" type="submit" value="Ajouter" />
+				<input id="btn_clearAddContact" type="reset" value="Effacer" />
+			
 		</div>
 		
 		<footer>
