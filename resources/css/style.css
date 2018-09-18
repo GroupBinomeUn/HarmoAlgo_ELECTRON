@@ -1,11 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
+/* -webkit-app-region: drag; /* permet le déplacement de la fenêtre sans bordure */
 
 html{
   font-family: 'Montserrat', sans-serif;
-}
-
-body{
-	/* -webkit-app-region: drag; /* permet le déplacement de la fenêtre sans bordure */
 }
 
 a{
@@ -49,10 +46,6 @@ body header{
 	background: #eeeeee;
 	border-bottom: 1px solid grey;
 	border-top: 1px solid grey;
-}
-
-#{
-	height: 622px;
 }
 
 nav {
@@ -146,34 +139,54 @@ h1{
 table{
 	margin: 15px auto;
 	border: 1px solid black;
-	width: 100%;
+	min-width: 100%;
+	max-width: 100%;
 }
 th{
 	font-weight: bold;
 	background: black;
 	color: white;
 }
-td{
+tr{
 	background: #e0e0e0;
+}
+.tr__pair{
+	background: #b6b6b6;
+}
+td{
+	vertical-align: middle;
 }
 th, td {
 	padding: 15px;
 	text-align: left;
-	border-bottom: 1px solid black;
+	/*border-bottom: 1px solid black;*/
 }
 tr td{
 	transition: all 0.2s ease-out;
 }
 tr:hover td{
-	background: #acacac;
+	background: #757575;
+	color: white;
 	transition: all 0.2s ease-out;
-}
-td{
-	vertical-align: middle;
 }
 
 section input[type=text], section input[type=number]{
 	width: 50%;
+}
+
+.search{
+	display: flex;
+}
+.txt-search-error{
+	border: 1px solid red;
+}
+.txt-search-good{
+	border: 1px solid black;
+}
+#list-search, #txt-search{
+	padding: 5px;
+	background: #e0e0e0;
+	margin-right: 5px;
 }
 
 footer {
@@ -188,7 +201,7 @@ footer {
 /* -------------*/
 /* -- Dialog -- */
 /* -------------*/
-#dialog{
+.dialog{
 	display: none;
 	border: 1px solid black;
 	width: 500px;
@@ -199,25 +212,25 @@ footer {
 	transform: translate(-50%, -50%);
 	box-shadow: 0px 0px 15px black;
 }
-#dialog .header{
+.dialog .header{
 	position: relative;
 	height: 26px;
 	background: grey;
 	border-bottom: 1px solid black;
 }
-#dialog .body{
+.dialog .body{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: left;
 	background: #acacac;
 	padding: 5px;
 }
-#dialog #titre{
+.dialog #titre{
 	position: absolute;
 	margin: 5px;
 	text-transform: uppercase;
 }
-#dialog #close{
+.dialog .close{
 	cursor: pointer;
 	float: right;
 	padding: 5px;
@@ -226,11 +239,11 @@ footer {
 	color: white;
 	transition: all 0.2s ease-out;
 }
-#dialog #close:hover{
+.dialog .close:hover{
 	background: red;
 	transition: all 0.2s ease-out;
 }
-#dialog input[type=text], #dialog input[type=number]{
+.dialog input[type=text], .dialog input[type=number], .dialog select{
 	padding: 5px;
 	width: 100%;
 	margin: 5px auto;
