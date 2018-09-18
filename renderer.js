@@ -118,12 +118,10 @@ function closeDialogDelContact() {
 
 function loadFile(){
     /* à terminer */
-    dialog.showErrorBox('Erreur !', 'L\'application a rencontré une erreur. Votre ordinateur va s\'auto-détruire dans 10 secondes.');
 }
 
 function saveFile(){
     /* à terminer */
-    dialog.showErrorBox('Erreur !', 'L\'application a rencontré une erreur. Votre ordinateur va s\'auto-détruire dans 10 secondes.');
 }
 
 function search(){
@@ -132,14 +130,36 @@ function search(){
 
 	txt.classList.remove('txt-search-error');
 	txt.classList.add('txt-search-good');
+	txt.style.border = "1px solid black";
 
 	if(txt.value.trim() != ""){
-		dialog.showMessageBox({ message: 'Vous effectuez une recherche sur le mot ' + txt.value + ' de type ' + type.options[type.selectedIndex].text, buttons: ["OK"] });
+		var select = type.options[type.selectedIndex].text;
+		if(select == 'nom'){
+
+		}
+		else if(select == 'prenom'){
+
+		}
+		else if(select == 'phone'){
+
+		}
+		else if(select == 'city'){
+
+		}
+		else if(select == 'postal'){
+
+		}
+		else if(select == 'addr'){
+
+		}
+		dialog.showMessageBox({ message: 'Vous effectuez une recherche sur le mot ' + txt.value + ' de type ' + select, buttons: ["OK"] });
 	}
 	else{
 		txt.focus();	
 		txt.classList.add('txt-search-error');
 		txt.classList.remove('txt-search-good');
+		txt.style.border = "1px solid red";
+		dialog.showErrorBox('Erreur !', 'L\'application a rencontré une erreur. Votre ordinateur va s\'auto-détruire dans 10 secondes.');
 	}
 }
 
@@ -172,4 +192,4 @@ document.querySelector('#close-del-dialog').addEventListener('click', closeDialo
 
 //recherche
 document.querySelector('#sub-search').addEventListener('click', search);
-document.querySelector('#serach_list').addEventListener('click', select_search);
+document.querySelector('#search_list').addEventListener('click', select_search);
