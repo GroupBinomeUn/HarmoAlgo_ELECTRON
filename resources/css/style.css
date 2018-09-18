@@ -1,33 +1,33 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 /* -webkit-app-region: drag; /* permet le déplacement de la fenêtre sans bordure */
 
-html{
+html {
   font-family: 'Montserrat', sans-serif;
 }
 
-a{
+a {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;
 }
 
-input[type=text], input[type=number]{
+input[type=text], input[type=number] {
 	border: 1px solid black;
 }
 
-input[type=submit], button, input[type=reset]{
+input[type=submit], button, input[type=reset] {
 	border: 1px solid black;
 	padding: 5px 15px;
 	font-weight: bold;
 	margin-right: 5px;
 	transition: all 0.2s ease-out;
 }
-input[type=submit]:hover, button:hover, input[type=reset]:hover{
+input[type=submit]:hover, button:hover, input[type=reset]:hover {
 	background: grey;
 	color: white;
 	transition: all 0.2s ease-out;
 }
-input[type=submit]:active, button:active, input[type=reset]:active{
+input[type=submit]:active, button:active, input[type=reset]:active {
 	box-shadow: 0px 0px 15px black inset;
 	transition: all 0s ease-out;
 }
@@ -35,12 +35,12 @@ input[type=submit]:active, button:active, input[type=reset]:active{
 /* ---------------*/
 /* --- Header --- */
 /* ---------------*/
-body header .icon{
+body header .icon {
   width: 1em;
   height: 1em;
 }
 
-body header{
+body header {
 	position: sticky;
 	top: 0;
 	background: #eeeeee;
@@ -54,13 +54,13 @@ nav {
   flex-direction: row;
 }
 
-nav a{
+nav a {
 	display: flex;
 	padding: 0.5em 0.8em;
 	transition: all 0.2s ease-out;
 }
 
-nav a:hover{
+nav a:hover {
 	color: white;
 	background: #acacac;
 	transition: all 0.2s ease-out;
@@ -98,11 +98,11 @@ main img {
 	padding: 2rem;
 }
 
-section{
+section {
 	margin: 25px auto;
 	width: 75%;
 }
-section .icon{
+section .icon {
 	cursor: pointer;
 	display: flex;
     width: 2em;
@@ -114,46 +114,46 @@ section .icon{
     color: white;
 	transition: all 0.2s ease-out;
 }
-section .icon:hover{
+section .icon:hover {
 	transition: all 0.2s ease-out;
     background: #eeeeee;
 }
-section .bin:hover{
+section .bin:hover {
 	transition: all 0.2s ease-out;
     color: red;
     background: #eeeeee;
 }
-section .add:hover{
+section .add:hover {
 	transition: all 0.2s ease-out;
     color: green;
     background: #eeeeee;
 }
 
-h1{
+h1 {
 	font-size: 2em;
 	font-weight: bold;
 	border-bottom: 5px solid black;
 	margin-bottom: 15px;
 }
 
-table{
+table {
 	margin: 15px auto;
 	border: 1px solid black;
 	min-width: 100%;
 	max-width: 100%;
 }
-th{
+th {
 	font-weight: bold;
 	background: black;
 	color: white;
 }
-tr{
+tr {
 	background: #e0e0e0;
 }
-.tr__pair{
+.tr__pair {
 	background: #b6b6b6;
 }
-td{
+td {
 	vertical-align: middle;
 }
 th, td {
@@ -161,29 +161,29 @@ th, td {
 	text-align: left;
 	/*border-bottom: 1px solid black;*/
 }
-tr td{
+tr td {
 	transition: all 0.2s ease-out;
 }
-tr:hover td{
+tr:hover td {
 	background: #757575;
 	color: white;
 	transition: all 0.2s ease-out;
 }
 
-section input[type=text], section input[type=number]{
+section input[type=text], section input[type=number] {
 	width: 50%;
 }
 
-.search{
+.search {
 	display: flex;
 }
-.txt-search-error{
+.txt-search-error {
 	border: 1px solid red;
 }
-.txt-search-good{
+.txt-search-good {
 	border: 1px solid black;
 }
-#list-search, #txt-search{
+#list-search, #txt-search {
 	padding: 5px;
 	background: #e0e0e0;
 	margin-right: 5px;
@@ -201,7 +201,7 @@ footer {
 /* -------------*/
 /* -- Dialog -- */
 /* -------------*/
-.dialog{
+.dialog {
 	background: #acacac;
 	display: none;
 	border: 1px solid black;
@@ -213,30 +213,30 @@ footer {
 	transform: translate(-50%, -50%);
 	box-shadow: 0px 0px 15px black;
 }
-.dialog .headerAddContact{
+.dialog .headerDialog {
 	position: relative;
 	height: 26px;
 	background: grey;
 	border-bottom: 1px solid black;
 }
-.dialog .bodyAddContact{
+.dialog .bodyDialog {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: left;
 	padding: 5px;
 }
-.dialog .bodyAddContact p{
+.dialog .bodyDialog p {
 	color: red;
 	font-weight: bold;
 	font-size: 0.7rem;
 	padding-bottom: 0.5rem;
 }
-.dialog #titre{
+.dialog #titre {
 	position: absolute;
 	margin: 5px;
 	text-transform: uppercase;
 }
-.dialog .close{
+.dialog .close {
 	cursor: pointer;
 	float: right;
 	padding: 5px;
@@ -245,16 +245,16 @@ footer {
 	color: white;
 	transition: all 0.2s ease-out;
 }
-.dialog .close:hover{
+.dialog .close:hover {
 	background: red;
 	transition: all 0.2s ease-out;
 }
-.dialog input[type=text], .dialog input[type=number], .dialog select{
+.dialog input[type=text], .dialog input[type=number], .dialog select {
 	padding: 5px;
 	width: 100%;
 	margin: 5px auto;
 }
-.dialog .bodyBtn{
+.dialog .bodyBtn {
 	margin: 5px;
 }
 input::-webkit-outer-spin-button,
