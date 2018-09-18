@@ -15,10 +15,36 @@ function addContact() {
 		var address = document.getElementById('address').value;
 		var thePeople = new Peoples(lastId++, lastName, firstName, phone, city, postalCode, address);
 		listPeoples.push(thePeople);
-		document.querySelector('.dialog').style.display = "none";
-		
+		document.querySelector('#dialog-add-contact').style.display = "none";
 		document.querySelector('#list_Peoples').innerHTML = viewPeoples('table');
+		clearAddContact();
 	}
+}
+
+function clearAddContact() {
+	document.getElementById('lastName').value = "";
+	document.getElementById('lastName').style = "border-color:dark";
+	document.getElementById('text_lastName').innerHTML = "";
+	
+	document.getElementById('firstName').value = "";
+	document.getElementById('firstName').style = "border-color:dark";
+	document.getElementById('text_firstName').innerHTML = "";
+	
+	document.getElementById('phone').value = "";
+	document.getElementById('phone').style = "border-color:dark";
+	document.getElementById('text_phone').innerHTML = "";	
+	
+	document.getElementById('city').value = "";
+	document.getElementById('city').style = "border-color:dark";
+	document.getElementById('text_city').innerHTML = "";
+	
+	document.getElementById('postalCode').value = "";
+	document.getElementById('postalCode').style = "border-color:dark";
+	document.getElementById('text_postalCode').innerHTML = "";
+	
+	document.getElementById('address').value = "";
+	document.getElementById('address').style = "border-color:dark";
+	document.getElementById('text_address').innerHTML = "";
 }
 
 function verifyAddPeople() {
@@ -28,39 +54,58 @@ function verifyAddPeople() {
 	else {
 		if (document.getElementById('lastName').value == "") {
 			document.getElementById('lastName').style = "border-color:red";
-			document.getElementById("text_lastName").innerHTML = "Veuillez rentrer un nom !";
+			document.getElementById('text_lastName').innerHTML = "Veuillez rentrer un nom !";
 		}
+		else {
+			document.getElementById('lastName').style = "border-color:dark";
+			document.getElementById('text_lastName').innerHTML = "";	
+		}
+		
 		if (document.getElementById('firstName').value == "") {
 			document.getElementById('firstName').style = "border-color:red";
-			document.getElementById("text_firstName").innerHTML = "Veuillez rentrer un prénom !";
+			document.getElementById('text_firstName').innerHTML = "Veuillez rentrer un prénom !";
 		}
+		else {
+			document.getElementById('firstName').style = "border-color:dark";
+			document.getElementById('text_firstName').innerHTML = "";	
+		}
+		
 		if (document.getElementById('phone').value == "") {
 			document.getElementById('phone').style = "border-color:red";
-			document.getElementById("text_phone").innerHTML = "Veuillez rentrer un numéro de téléphone !";
+			document.getElementById('text_phone').innerHTML = "Veuillez rentrer un numéro de téléphone !";
 		}
+		else {
+			document.getElementById('phone').style = "border-color:dark";
+			document.getElementById('text_phone').innerHTML = "";	
+		}
+		
 		if (document.getElementById('city').value == "") {
 			document.getElementById('city').style = "border-color:red";
-			document.getElementById("text_city").innerHTML = "Veuillez rentrer une ville !";
+			document.getElementById('text_city').innerHTML = "Veuillez rentrer une ville !";
 		}
+		else {
+			document.getElementById('city').style = "border-color:dark";
+			document.getElementById('text_city').innerHTML = "";	
+		}
+		
 		if (document.getElementById('postalCode').value == "" || document.getElementById('postalCode').length != 5) {
 			document.getElementById('postalCode').style = "border-color:red";
-			document.getElementById("text_postalCode").innerHTML = "Veuillez rentrer un code postal valide !";
+			document.getElementById('text_postalCode').innerHTML = "Veuillez rentrer un code postal valide !";
 		}
+		else {
+			document.getElementById('postalCode').style = "border-color:dark";
+			document.getElementById('text_postalCode').innerHTML = "";	
+		}
+		
 		if (document.getElementById('address').value == "") {
 			document.getElementById('address').style = "border-color:red";
-			document.getElementById("text_address").innerHTML = "Veuillez rentrer une adresse !";
+			document.getElementById('text_address').innerHTML = "Veuillez rentrer une adresse !";
 		}
-			
+		else {
+			document.getElementById('address').style = "border-color:dark";
+			document.getElementById('text_address').innerHTML = "";
+		}
 	}
-}
-
-function clearAddContact() {
-	document.getElementById('lastName').value = "";
-	document.getElementById('firstName').value = "";
-	document.getElementById('phone').value = "";
-	document.getElementById('city').value = "";
-	document.getElementById('postalCode').value = "";
-	document.getElementById('address').value = "";
 }
 
 function update(){	
@@ -75,7 +120,7 @@ function viewPeoples(type) {
 		for(var index in listPeoples) { 
 			if (listPeoples.hasOwnProperty(index)) {
 				if(type == 'select'){
-					temp += "<option value='" + listPeoples[index].getId + "' >" + listPeoples[index].getLastName + " " + listPeoples[index].getFirstName + " " + listPeoples[index].getPhone + " " + listPeoples[index].getCity + " " + listPeoples[index].getPostalCode + " " + listPeoples[index].getAddress + "</option>";
+					temp += "<option value='" + listPeoples[index].getId + "' >" + listPeoples[index].getLastName + " " + listPeoples[index].getFirstName + " - " + listPeoples[index].getPhone + " - " + listPeoples[index].getCity + ", " + listPeoples[index].getPostalCode + " | " + listPeoples[index].getAddress + ".</option>";
 				}
 				else{
 					var btnDel = '<svg title="Supprimer" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
@@ -94,6 +139,7 @@ function viewPeoples(type) {
 }
 
 function displayDialogAddContact() {
+	clearAddContact();
 	document.querySelector('#dialog-add-contact').style.display = "block";
 	document.querySelector('#list').scrollIntoView({
 		behavior: 'smooth'
@@ -175,21 +221,21 @@ function closeApp(){
 }
 
 document.addEventListener('DOMContentLoaded', update());
-document.querySelector('#btn_addContact').addEventListener('click', addContact);
 document.querySelector('#close_app').addEventListener('click', closeApp);
 document.querySelector('#load_file').addEventListener('click', loadFile);
 document.querySelector('#save_file').addEventListener('click', saveFile);
 
-//add contact
+//Add People
+document.querySelector('#btn_addPeople').addEventListener('click', addContact);
 document.querySelector('#svg_addContact').addEventListener('click', displayDialogAddContact);
 document.querySelector('#close-add-dialog').addEventListener('click', closeDialogAddContact);
-document.querySelector('#menu_addContact').addEventListener('click', displayDialogAddContact);
-document.querySelector('#btn_clearAddContact').addEventListener('click', clearAddContact);
+document.querySelector('#menu_addPeople').addEventListener('click', displayDialogAddContact);
+document.querySelector('#btn_clearAddPeople').addEventListener('click', clearAddContact);
 
-//del contact
-document.querySelector('#del_contact').addEventListener('click', displayDialogDelContact);
+//Delete People
+document.querySelector('#btn_deletePeople').addEventListener('click', displayDialogDelContact);
 document.querySelector('#close-del-dialog').addEventListener('click', closeDialogDelContact);
 
-//recherche
+//Search
 document.querySelector('#sub-search').addEventListener('click', search);
 document.querySelector('#search_list').addEventListener('click', select_search);
