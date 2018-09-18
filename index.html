@@ -16,11 +16,12 @@
 		<!-- main height auto -->
 	</head>	
 	<body> 
+		<!--
 		<main id='first-main' >
 			<h3>Carnet d'adresses</h3>
 			<img src="resources/svg/SVG/address-book1.svg" />
 		</main>
-		
+		-->
 		<header>
 			<nav id="nav" >
 				<ul>
@@ -89,32 +90,41 @@
 				<tr><td colspan="8" >...</td></tr>
 			</table>
 			<div>
-				<svg id="addContact" title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg>
+				<svg id="svg_addContact" title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg>
 			</div>
 		</section>
 
         <div class="dialog" id="dialog-add-contact" >
-			<div class="header" >
+			<div class="headerAddContact" >
 				<span id="titre" >Ajout d'un contact</span>
 				<span id="close-add-dialog" class='close' >X</span>
 			</div>
-			<div class="body" >
-				<input id="lastName" type="text" placeholder="Nom" maxlength="100" required="required">
-				<input id="firstName" type="text" placeholder="Prénom" maxlength="100" required="required">
-				<input id="phone" step="1" min="0" type="number" placeholder="Portable" maxlength="30" required="required">
-				<input id="city" type="text" placeholder="Ville" maxlength="100" required="required">
-				<input id="postalCode" step="1" min="0" type="number" placeholder="Code Postal" maxlength="5" required="required">
-				<input id="address" type="text" placeholder="Adresse" maxlength="100" required="required">
-				<input id="submit" type="submit" value="Ajouter" /> <input id="reset" type="reset" value="Effacer" />
+			<div class="bodyAddContact">
+				<input id="lastName" type="text" placeholder="Nom" maxlength="100">
+				<p id="text_lastName"></p>
+				<input id="firstName" type="text" placeholder="Prénom" maxlength="100">
+				<p id="text_firstName"></p>
+				<input id="phone" step="1" min="0" type="number" placeholder="Portable" onkeydown="javascript: return event.keyCode == 69 ? false : true">
+				<p id="text_phone"></p>
+				<input id="city" type="text" placeholder="Ville" maxlength="50">
+				<p id="text_city"></p>
+				<input id="postalCode" step="1" min="0" type="number" placeholder="Code Postal"  onkeydown="javascript: return event.keyCode == 69 ? false : true">
+				<p id="text_postalCode"></p>
+				<input id="address" type="text" placeholder="Adresse" maxlength="100">
+				<p id="text_address"></p>
 			</div>
+			<div class="bodyBtn" >
+				<input id="btn_addContact" type="submit" value="Ajouter" />
+				<input id="btn_clearAddContact" type="reset" value="Effacer" />
+			</div>	
 		</div>
 
         <div class="dialog" id="dialog-del-contact" >
-			<div class="header" >
+			<div class="headerAddContact" >
 				<span id="titre" >Suppression d'un contact</span>
 				<span id="close-del-dialog" class='close' >X</span>
 			</div>
-			<div class="body" >
+			<div class="bodyAddContact" >
 				<select class="list-search" id="list-contact-to-delete" >
 					<option value="null" disabled selected >...</option>
 				</select>
