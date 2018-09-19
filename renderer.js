@@ -11,12 +11,12 @@ const {dialog} = require('electron').remote;
 // --------------------------//
 function addPeople() {
 	if (verifyAddPeople()) {
-		var lastName = document.getElementById('lastName').value;
-		var firstName = document.getElementById('firstName').value;
-		var phone = document.getElementById('phone').value;
-		var city = document.getElementById('city').value;
-		var postalCode = document.getElementById('postalCode').value;
-		var address = document.getElementById('address').value;
+		var lastName = document.querySelector('#lastName').value;
+		var firstName = document.querySelector('#firstName').value;
+		var phone = document.querySelector('#phone').value;
+		var city = document.querySelector('#city').value;
+		var postalCode = document.querySelector('#postalCode').value;
+		var address = document.querySelector('#address').value;
 		var thePeople = new Peoples(lastId++, lastName, firstName, phone, city, postalCode, address);
 		listPeoples.push(thePeople);
 		
@@ -27,89 +27,89 @@ function addPeople() {
 	}
 }
 function verifyAddPeople() {
-	if (document.getElementById('lastName').value != "" && document.getElementById('firstName').value != "" && document.getElementById('phone').value != "" && document.getElementById('city').value != "" && document.getElementById('postalCode').value != "" && document.getElementById('address').value != "") {
+	if (document.querySelector('#lastName').value != "" && document.querySelector('#firstName').value != "" && document.querySelector('#phone').value != "" && document.querySelector('#city').value != "" && document.querySelector('#postalCode').value != "" && document.querySelector('#address').value != "") {
 		return true;
 	}
 	else {
-		if (document.getElementById('lastName').value == "") {
-			document.getElementById('lastName').style = "border-color:red";
-			document.getElementById('text_lastName').innerHTML = "Veuillez rentrer un nom !";
+		if (document.querySelector('#lastName').value == "") {
+			document.querySelector('#lastName').style = "border-color:red";
+			document.querySelector('#text_lastName').innerHTML = "Veuillez rentrer un nom !";
 		}
 		else {
-			document.getElementById('lastName').style = "border-color:dark";
-			document.getElementById('text_lastName').innerHTML = "";	
+			document.querySelector('#lastName').style = "border-color:dark";
+			document.querySelector('#text_lastName').innerHTML = "";	
 		}
 		
-		if (document.getElementById('firstName').value == "") {
-			document.getElementById('firstName').style = "border-color:red";
-			document.getElementById('text_firstName').innerHTML = "Veuillez rentrer un prénom !";
+		if (document.querySelector('#firstName').value == "") {
+			document.querySelector('#firstName').style = "border-color:red";
+			document.querySelector('#text_firstName').innerHTML = "Veuillez rentrer un prénom !";
 		}
 		else {
-			document.getElementById('firstName').style = "border-color:dark";
-			document.getElementById('text_firstName').innerHTML = "";	
+			document.querySelector('#firstName').style = "border-color:dark";
+			document.querySelector('#text_firstName').innerHTML = "";	
 		}
 		
-		if (document.getElementById('phone').value == "") {
-			document.getElementById('phone').style = "border-color:red";
-			document.getElementById('text_phone').innerHTML = "Veuillez rentrer un numéro de téléphone !";
+		if (document.querySelector('#phone').value == "") {
+			document.querySelector('#phone').style = "border-color:red";
+			document.querySelector('#text_phone').innerHTML = "Veuillez rentrer un numéro de téléphone !";
 		}
 		else {
-			document.getElementById('phone').style = "border-color:dark";
-			document.getElementById('text_phone').innerHTML = "";	
+			document.querySelector('#phone').style = "border-color:dark";
+			document.querySelector('#text_phone').innerHTML = "";	
 		}
 		
-		if (document.getElementById('city').value == "") {
-			document.getElementById('city').style = "border-color:red";
-			document.getElementById('text_city').innerHTML = "Veuillez rentrer une ville !";
+		if (document.querySelector('#city').value == "") {
+			document.querySelector('#city').style = "border-color:red";
+			document.querySelector('#text_city').innerHTML = "Veuillez rentrer une ville !";
 		}
 		else {
-			document.getElementById('city').style = "border-color:dark";
-			document.getElementById('text_city').innerHTML = "";	
+			document.querySelector('#city').style = "border-color:dark";
+			document.querySelector('#text_city').innerHTML = "";	
 		}
 		
-		if (document.getElementById('postalCode').value == "" || document.getElementById('postalCode').length != 5) {
-			document.getElementById('postalCode').style = "border-color:red";
-			document.getElementById('text_postalCode').innerHTML = "Veuillez rentrer un code postal valide !";
+		if (document.querySelector('#postalCode').value == "" || document.querySelector('#postalCode').length != 5) {
+			document.querySelector('#postalCode').style = "border-color:red";
+			document.querySelector('#text_postalCode').innerHTML = "Veuillez rentrer un code postal valide !";
 		}
 		else {
-			document.getElementById('postalCode').style = "border-color:dark";
-			document.getElementById('text_postalCode').innerHTML = "";	
+			document.querySelector('#postalCode').style = "border-color:dark";
+			document.querySelector('#text_postalCode').innerHTML = "";	
 		}
 		
-		if (document.getElementById('address').value == "") {
-			document.getElementById('address').style = "border-color:red";
-			document.getElementById('text_address').innerHTML = "Veuillez rentrer une adresse !";
+		if (document.querySelector('#address').value == "") {
+			document.querySelector('#address').style = "border-color:red";
+			document.querySelector('#text_address').innerHTML = "Veuillez rentrer une adresse !";
 		}
 		else {
-			document.getElementById('address').style = "border-color:dark";
-			document.getElementById('text_address').innerHTML = "";
+			document.querySelector('#address').style = "border-color:dark";
+			document.querySelector('#text_address').innerHTML = "";
 		}
 	}
 }
 function clearAddPeople() {
-	document.getElementById('lastName').value = "";
-	document.getElementById('lastName').style = "border-color:dark";
-	document.getElementById('text_lastName').innerHTML = "";
+	document.querySelector('#lastName').value = "";
+	document.querySelector('#lastName').style = "border-color:dark";
+	document.querySelector('#text_lastName').innerHTML = "";
 	
-	document.getElementById('firstName').value = "";
-	document.getElementById('firstName').style = "border-color:dark";
-	document.getElementById('text_firstName').innerHTML = "";
+	document.querySelector('#firstName').value = "";
+	document.querySelector('#firstName').style = "border-color:dark";
+	document.querySelector('#text_firstName').innerHTML = "";
 	
-	document.getElementById('phone').value = "";
-	document.getElementById('phone').style = "border-color:dark";
-	document.getElementById('text_phone').innerHTML = "";	
+	document.querySelector('#phone').value = "";
+	document.querySelector('#phone').style = "border-color:dark";
+	document.querySelector('#text_phone').innerHTML = "";	
 	
-	document.getElementById('city').value = "";
-	document.getElementById('city').style = "border-color:dark";
-	document.getElementById('text_city').innerHTML = "";
+	document.querySelector('#city').value = "";
+	document.querySelector('#city').style = "border-color:dark";
+	document.querySelector('#text_city').innerHTML = "";
 	
-	document.getElementById('postalCode').value = "";
-	document.getElementById('postalCode').style = "border-color:dark";
-	document.getElementById('text_postalCode').innerHTML = "";
+	document.querySelector('#postalCode').value = "";
+	document.querySelector('#postalCode').style = "border-color:dark";
+	document.querySelector('#text_postalCode').innerHTML = "";
 	
-	document.getElementById('address').value = "";
-	document.getElementById('address').style = "border-color:dark";
-	document.getElementById('text_address').innerHTML = "";
+	document.querySelector('#address').value = "";
+	document.querySelector('#address').style = "border-color:dark";
+	document.querySelector('#text_address').innerHTML = "";
 }
 
 
@@ -117,7 +117,7 @@ function clearAddPeople() {
 // --- Dialog Delete People --- //
 // -----------------------------//
 function deletePeople(type) {
-	var id = document.getElementById('select_listPeoples').value;
+	var id = document.querySelector('#select_listPeoples').value;
 	var index = listPeoples.findIndex(obj => obj.id === id);
 	if (type == 'select') {
 		if (index >= 0) {
@@ -224,8 +224,8 @@ function saveFile(){
 	}
 
 	document.addEventListener( "DOMContentLoaded", function() {
-		var form = document.getElementById( "test" );
-		var output = document.getElementById( "output" );
+		var form = document.querySelector("#test");
+		var output = document.querySelector("#output");
 		form.addEventListener( "submit", function( e ) {
 			e.preventDefault();
 			var json = toJSONString( this );
