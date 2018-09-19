@@ -23,5 +23,8 @@
   "homepage": "https://github.com/GroupBinomeUn/HarmoAlgo_ELECTRON#readme",
   "devDependencies": {
     "electron": "^2.0.9"
+  },
+  "dependencies": {
+    "serialize-javascript": "^1.5.0"
   }
 }
