@@ -56,8 +56,15 @@ class Peoples {
     set setAddress(address){
         this.address = address;
     }
-}
-
-function addPeople(){
-        
+/*
+	retrieve(id){
+		for (var people in listPeoples) {
+			if (listPeoples.hasOwnProperty(people)) {
+				if (listPeoples[people].getId == id) {
+					
+				}
+			}
+		}
+	}
+*/
 }
