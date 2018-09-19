@@ -116,13 +116,17 @@ function clearAddPeople() {
 // --------------------------//
 // --- Dialog Delete People --- //
 // --------------------------//
-function deletePeople() {
+function deletePeople(type) {
 	var id = document.getElementById('select_listPeoples').value;
-	/*
-	var thePeople = new Peoples();
-	thePeople.retrieve(id);
-	*/
-	listPeoples.remove[listPeoples.selectedIndex];
+	var index = listPeoples.findIndex(obj => obj.id === id);
+	if (type == 'select') {
+		if (index >= 0) {
+			listPeoples.splice(index, 1);
+		}
+	}
+	else if (type == 'table') {
+		
+	}	
 	update();
 }
 
@@ -139,7 +143,7 @@ function viewPeoples(type) {
 				if(type == 'select'){
 					temp += "<option value='" + listPeoples[people].getId + "' >" + listPeoples[people].getLastName + " " + listPeoples[people].getFirstName + " - " + listPeoples[people].getPhone + " - " + listPeoples[people].getCity + ", " + listPeoples[people].getPostalCode + " | " + listPeoples[people].getAddress + ".</option>";
 				}
-				else{
+				else if (type == 'table'){
 					var btnDel = '<svg title="Supprimer" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
 					if(i%2 == 1){
 						temp += "<tr class='tr__pair' ><td>" + listPeoples[people].getId +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
@@ -278,7 +282,7 @@ document.querySelector('#close_dialogAddPeople').addEventListener('click', close
 document.querySelector('#btn_clearAddPeople').addEventListener('click', clearAddPeople);
 
 // --- Dialog - Delete People --- //
-document.querySelector('#btn_deletePeople').addEventListener('click', deletePeople);
+document.querySelector('#btn_deletePeople').addEventListener('click', deletePeople('select'));
 document.querySelector('#close_dialogDeletePeople').addEventListener('click', closeDialogDeletePeople);
 
 // --- Search --- //
