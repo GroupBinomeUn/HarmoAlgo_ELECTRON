@@ -21,7 +21,7 @@
 		</main>
 		
 		<header>
-			<nav id="nav" >
+			<nav>
 				<ul>
 					<li>
 						<a id="up" title="Home" >
@@ -69,6 +69,7 @@
 		
 		<section id="list" >
 			<h1>Liste des contacts</h1>
+
 			<div class="search" >
 				<select id="list-search" >
 					<option value="nom">Nom</option>
@@ -78,18 +79,15 @@
 				  <input type="text" id="txt-search" class="txt-search-good" placeholder="Rechercher..." />
 				  <input id="btn_eraseSearch" type="submit" value="Annuler la recherche" />
 			</div>
-			<table id ="table_listPeoples">
+
+			<table id="table_listPeoples">
 				<tr>
 					<th>ID</th><th>Nom</th><th>Prenom</th><th>Téléphone</th><th>Ville</th><th>Code postal</th><th>Adresse</th><th></th>
 				</tr>
 				<tr><td colspan="8" >...</td></tr>
-				<tr class="btn_tr_addPeople" id="svg_addPeople" ><td colspan="8" ><svg id="svg_addPeople" title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg></td></tr>
+				<tr class="btn_tr_addPeople" id="svg_addPeople" ><td colspan="8" ><svg title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg></td></tr>
 			</table>
-			<!--
-			<div>
-				<svg id="svg_addPeople" title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg>
-			</div>
-			-->
+			
 		</section>
 
         <div class="dialog" id="dialog_addPeople" >
@@ -97,6 +95,7 @@
 				<span id="titre" >Ajout d'un contact</span>
 				<span id="close_dialogAddPeople" class='close' >X</span>
 			</div>
+
 			<div class="bodyDialog">
 				<input id="lastName" type="text" placeholder="Nom" maxlength="100">
 				<p id="text_lastName"></p>
@@ -111,6 +110,7 @@
 				<input id="address" type="text" placeholder="Adresse" maxlength="100">
 				<p id="text_address"></p>
 			</div>
+
 			<div class="bodyBtn" >
 				<input id="btn_addPeople" type="submit" value="Ajouter" />
 				<input id="btn_clearAddPeople" type="reset" value="Effacer" />
@@ -122,6 +122,7 @@
 				<span id="titre" >Suppression d'un contact</span>
 				<span id="close_dialogDeletePeople" class='close' >X</span>
 			</div>
+
 			<div class="bodyDialog" >
 				<select class="list-search" id="select_listPeoples" >
 					<option value="null" disabled selected >...</option>
@@ -135,6 +136,7 @@
 			<p>By IUT Binome Team | All Rights Reserved.</p>
 		</footer>
 
+		<!-- require scripts -->
 		<script src="renderer.js" type="text/javascript"></script>
 	</body>
 </html>

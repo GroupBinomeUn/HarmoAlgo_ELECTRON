@@ -17,6 +17,13 @@ body{
 	padding-bottom: 6rem;
 	min-height: 100%;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+::-webkit-scrollbar { 
+	display: none; 
+}
 
 a {
 	color: black;
@@ -137,12 +144,12 @@ section .icon {
 	color: white;
 	transition: all 0.2s ease-out;
 }
-.bin:hover {
+section .bin:hover {
 	transition: all 0.2s ease-out;
 	color: red;
 	background: #c9d8ff;
 }
-.add:hover {
+section .add:hover {
 	transition: all 0.2s ease-out;
 	color: green;
 	background: #c9d8ff;
@@ -235,6 +242,8 @@ footer {
 }
 .btn_tr_addPeople:hover .add{
 	color: green;
+	border: none;
+	background: none;
 }
 .btn_tr_addPeople .add{
 	display: flex;
@@ -244,13 +253,15 @@ footer {
 	border: none;
 	background: none;
 }
+
+
 /* -------------*/
 /* -- Dialog -- */
 /* -------------*/
 .dialog {
 	background: white;
 	display: none;
-	border: 1px solid #6692ff;
+	border: 2px solid #6692ff;
 	border-radius: 5px;
 	width: 500px;
 	position: fixed;
@@ -264,7 +275,7 @@ footer {
 	position: relative;
 	height: 26px;
 	background: #6692ff;
-	border-bottom: 1px solid #6692ff;
+	border-bottom: 28px solid #6692ff;
 }
 .dialog .bodyDialog {
 	display: flex;
@@ -286,16 +297,18 @@ footer {
 	font-weight: bold;
 }
 .dialog .close {
+	width: 50px;
 	cursor: pointer;
 	float: right;
 	padding: 5px;
-	border-left: 1px solid #6692ff;
+	border-left: 2px solid #6692ff;
 	background: black;
 	color: white;
 	font-weight: bold;
 	/*border-radius: 0px 5px 0px 0px;*/
 	border-radius: 5px;
 	transition: all 0.2s ease-out;
+	text-align: center;
 }
 .dialog .close:hover {
 	background: red;
@@ -308,8 +321,4 @@ footer {
 }
 .dialog .bodyBtn {
 	margin: 5px;
-}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
 }

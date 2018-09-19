@@ -2,7 +2,8 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 const {dialog} = require('electron').remote;
-var serialize = require('serialize-javascript');
+var serialize = require('serialize-to-js').serialize;
+var deserialize = require('serialize-to-js').deserialize;
 
 //dialog.showErrorBox('Erreur !', 'L\'application a rencontré une erreur. Votre ordinateur va s\'auto-détruire dans 10 secondes.');4
 
@@ -197,17 +198,11 @@ function update(){
 function displayDialogAddPeople() {
 	clearAddPeople();
 	document.querySelector('#dialog_addPeople').style.display = "block";
-	document.querySelector('#list').scrollIntoView({
-		behavior: 'smooth'
-	});
 	closeDialogDeletePeople();
 }
 function displayDialogDeletePeople() {
 	document.querySelector('#select_listPeoples').innerHTML = viewPeoples('select');
 	document.querySelector('#dialog_deletePeople').style.display = "block";
-	document.querySelector('#list').scrollIntoView({
-		behavior: 'smooth'
-	});
 	closeDialogAddPeople();
 }
 
@@ -241,7 +236,7 @@ function saveFile(){
 // ---------------//
 function select_search(){
 	document.querySelector('#txt-search').focus();
-	document.querySelector('#nav').scrollIntoView({
+	document.querySelector('#list').scrollIntoView({
 		behavior: 'smooth'
 	});
 	closeDialogDeletePeople();
@@ -354,7 +349,7 @@ function closeApp(){
 // --- Home --- //
 // -------------//
 function home(){
-	document.querySelector('#nav').scrollIntoView({
+	document.querySelector('#list').scrollIntoView({
 		behavior: 'smooth'
 	});
 }
@@ -362,6 +357,11 @@ function eraseSearch(){
 	document.querySelector('#txt-search').value = "";
 	//document.querySelector('#txt-search').focus();
 	document.querySelector('#table_listPeoples').innerHTML = viewPeoples('table');
+}
+function enterInTheNewWorld(){
+	document.querySelector('#list').scrollIntoView({
+		behavior: 'smooth'
+	});
 }
 
 // --- Menu --- //
@@ -374,6 +374,7 @@ document.querySelector('#menu_deletePeople').addEventListener('click', displayDi
 document.querySelector('#menu_close').addEventListener('click', closeApp);
 document.querySelector('#up').addEventListener('click', home);
 document.querySelector('#btn_eraseSearch').addEventListener('click', eraseSearch);
+document.querySelector('#first-main').addEventListener('click', enterInTheNewWorld);
 
 // --- Dialog - Add People --- //
 document.querySelector('#btn_addPeople').addEventListener('click', addPeople);
