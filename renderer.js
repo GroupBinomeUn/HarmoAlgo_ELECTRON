@@ -228,13 +228,10 @@ function loadFile(){
 	//deserialize(str, [context])
 }
 function saveFile(){
-	var saveJSON = null;
-	for(var people in listPeoples) { 
-		if (listPeoples.hasOwnProperty(people)) {			
-			var lePeople = new Peoples(listPeoples[people].getId, listPeoples[people].getLastName, listPeoples[people].getFirstName, listPeoples[people].getPhone, listPeoples[people].getCity, listPeoples[people].getPostalCode, listPeoples[people].getAddress);
-			saveJSON += serialize(lePeople);
-		}
-	}
+	var a = document.querySelector('#menu_saveFile');
+	var file = new Blob([serialize(listPeoples)], {type: 'text/plain'});
+	a.href = URL.createObjectURL(file);
+	a.download = 'Peoples.json';
 }
 
 // ---------------//
