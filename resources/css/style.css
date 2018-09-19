@@ -69,7 +69,7 @@ body header {
 nav {
 	display: flex;
 	flex-wrap: wrap;
-  	flex-direction: row;
+	flex-direction: row;
 }
 
 nav a {
@@ -106,20 +106,18 @@ main {
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	color: black;
+	color: white;
 }
 main h3 {
 	padding: 1rem 0 1rem 0;
 	font-size: 8vw;
-	color: #6692ff;
 }
 main .svg {
-    width: 15em;
-    height: 15em;
+	width: 15em;
+	height: 15em;
 	padding: 2rem;
 	display: flex;
 	padding: 5px;
-	color: #6692ff;
 }
 
 section {
@@ -129,29 +127,25 @@ section {
 section .icon {
 	cursor: pointer;
 	display: flex;
-    width: 3em;
-    height: 3em;
+	width: 3em;
+	height: 3em;
 	padding: 5px;
 	padding-left: 7px;
-    border: 1px solid #6692ff;
+	border: 1px solid #6692ff;
 	background: #9ab7ff;
 	border-radius: 5px;
-    color: white;
+	color: white;
 	transition: all 0.2s ease-out;
 }
-section .icon:hover {
+.bin:hover {
 	transition: all 0.2s ease-out;
-    background: #eeeeee;
+	color: red;
+	background: #c9d8ff;
 }
-section .bin:hover {
+.add:hover {
 	transition: all 0.2s ease-out;
-    color: red;
-    background: #eeeeee;
-}
-section .add:hover {
-	transition: all 0.2s ease-out;
-    color: green;
-    background: #eeeeee;
+	color: green;
+	background: #c9d8ff;
 }
 
 h1 {
@@ -168,6 +162,7 @@ table {
 	border: 1px solid #6692ff;
 	width: 100%;
 	border-radius: 5px;
+	margin-bottom: 55px;
 }
 th {
 	font-weight: bold;
@@ -233,6 +228,22 @@ footer {
 	left: 0;
 }
 	
+.btn_tr_addPeople{
+	background: #6692ff;
+	cursor: pointer;
+	color: white;
+}
+.btn_tr_addPeople:hover .add{
+	color: green;
+}
+.btn_tr_addPeople .add{
+	display: flex;
+	margin: auto;
+	width: 3em;
+	height: 3em;
+	border: none;
+	background: none;
+}
 /* -------------*/
 /* -- Dialog -- */
 /* -------------*/
@@ -247,7 +258,7 @@ footer {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	box-shadow: 0px 0px 15px black;
+	box-shadow: 0px 0px 15px #001c64;
 }
 .dialog .headerDialog {
 	position: relative;

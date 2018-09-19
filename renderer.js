@@ -168,9 +168,11 @@ function viewPeoples(type) {
 				}
 			}
 		}
+		temp += '<tr class="btn_tr_addPeople" id="svg_addPeople" ><td colspan="8" ><svg id="svg_addPeople" title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg></td></tr>';
 	}
 	else if (type == 'table') {
-		temp += '<tr><td colspan="8" >...</td></tr>';
+		temp += '<tr><td colspan="8" >...</td></tr>' + 
+				'<tr class="btn_tr_addPeople" id="svg_addPeople" ><td colspan="8" ><svg id="svg_addPeople" title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg></td></tr>';
 	}
 	else if (type == 'select') {
 		temp = '<option value="null" disabled selected >...</option>';
@@ -309,16 +311,19 @@ function search(){
 								temp += "<tr><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 							}
 						}
-					}
-		
+					}		
 				}
 				break;
 			default:
-				temp += "<tr><td colspan='8' >...</td></tr>";
+				temp += "<tr><td colspan='8' >...</td></tr>" + 
+						'<tr class="btn_tr_addPeople" id="svg_addPeople" ><td colspan="8" ><svg id="svg_addPeople" title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg></td></tr>';
+				break;
 		}
 		if(!i){
-			temp += "<tr><td colspan='8' >...</td></tr>";
+			temp += "<tr><td colspan='8' >...</td></tr>" + 
+					'<tr class="btn_tr_addPeople" id="svg_addPeople" ><td colspan="8" ><svg id="svg_addPeople" title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg></td></tr>';
 		}
+		temp += '<tr class="btn_tr_addPeople" id="svg_addPeople" ><td colspan="8" ><svg id="svg_addPeople" title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg></td></tr>';
 		document.querySelector('#table_listPeoples').innerHTML = temp;
 	}
 	else{
