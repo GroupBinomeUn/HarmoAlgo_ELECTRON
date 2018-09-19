@@ -17,8 +17,9 @@
 	<body>
 		<main id='first-main' >
 			<h3>Carnet d'adresses</h3>
-			<img src="resources/svg/SVG/address-book1.svg" />
+			<svg class="icon svg icon-address-book"><use xlink:href="#icon-address-book"></use></svg>
 		</main>
+		
 		<header>
 			<nav id="nav" >
 				<ul>
@@ -75,6 +76,7 @@
 					<option value="phone">Téléphone</option>
 				  </select> 
 				  <input type="text" id="txt-search" class="txt-search-good" placeholder="Rechercher..." />
+				  <input id="btn_eraseSearch" type="submit" value="Annuler la recherche" />
 			</div>
 			<table id ="table_listPeoples">
 				<tr>

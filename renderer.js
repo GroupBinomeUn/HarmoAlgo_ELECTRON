@@ -356,6 +356,11 @@ function home(){
 		behavior: 'smooth'
 	});
 }
+function eraseSearch(){
+	document.querySelector('#txt-search').value = "";
+	//document.querySelector('#txt-search').focus();
+	document.querySelector('#table_listPeoples').innerHTML = viewPeoples('table');
+}
 
 // --- Menu --- //
 document.addEventListener('DOMContentLoaded', update());
@@ -366,6 +371,7 @@ document.querySelector('#svg_addPeople').addEventListener('click', displayDialog
 document.querySelector('#menu_deletePeople').addEventListener('click', displayDialogDeletePeople);
 document.querySelector('#menu_close').addEventListener('click', closeApp);
 document.querySelector('#up').addEventListener('click', home);
+document.querySelector('#btn_eraseSearch').addEventListener('click', eraseSearch);
 
 // --- Dialog - Add People --- //
 document.querySelector('#btn_addPeople').addEventListener('click', addPeople);
