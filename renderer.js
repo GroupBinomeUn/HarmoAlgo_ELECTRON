@@ -117,17 +117,27 @@ function clearAddPeople() {
 // -----------------------------//
 // --- Dialog Delete People --- //
 // -----------------------------//
-function deletePeople(type) {
-	var id = document.querySelector('#select_listPeoples').value;
-	var index = listPeoples.findIndex(obj => obj.id === id);
-	if (type == 'select') {
+<<<<<<< HEAD
+function deletePeople() {
+	var idSelect = document.getElementById('select_listPeoples').value;
+	var idTable = this.id;
+	
+	if (idSelect != null) {
+		var index = listPeoples.findIndex(obj => obj.id == idSelect);
+		
 		if (index >= 0) {
 			listPeoples.splice(index, 1);
+			listPeoples.slice(index + 1);
 		}
 	}
-	else if (type == 'table') {
-		
-	}	
+	else if (idTable != null) {
+		var index = listPeoples.findIndex(obj => obj.id == idTable);
+		if (index >= 0) {
+			listPeoples.splice(index, 1);
+			listPeoples.slice(index + 1);
+		}
+	}
+	
 	update();
 }
 
@@ -137,10 +147,9 @@ function deletePeople(type) {
 // ----------------------//
 function viewPeoples(type) {
 	var i = 0;
-	if(type == 'table'){
-		var temp = "<tr><th>Position</th><th>Nom</th><th>Prenom</th><th>Téléphone</th><th>Ville</th><th>Code postal</th><th>Adresse</th><th></th></tr>";
+	if (type == 'table') {
+		var temp = '<tr><th>Position</th><th>Nom</th><th>Prenom</th><th>Téléphone</th><th>Ville</th><th>Code postal</th><th>Adresse</th><th></th></tr>';
 	}
-	
 	if(listPeoples.length >= 1) {
 		for(var people in listPeoples) { 
 			if (listPeoples.hasOwnProperty(people)) {
@@ -149,7 +158,7 @@ function viewPeoples(type) {
 				}
 				else{
 					i++;
-					var btnDel = '<svg title="Supprimer" id="' + listPeoples[people].getId + '" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
+					var btnDel = '<svg title="Supprimer" value="' + listPeoples[people].getId + '" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
 					if(i%2 == 1){
 						temp += "<tr class='tr__pair' ><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 					}
@@ -160,11 +169,11 @@ function viewPeoples(type) {
 			}
 		}
 	}
-	else if(type == 'select'){
-		temp += "<option value='null' disabled selected >...</option>";
+	else if (type == 'table') {
+		temp += '<tr><td colspan="8" >...</td></tr>';
 	}
-	else{
-		temp += "<tr><td colspan='8' >...</td></tr>";
+	else if (type == 'select') {
+		temp = '<option value="null" disabled selected >...</option>';
 	}
 
 	return temp;
@@ -231,6 +240,7 @@ function saveFile(){
 // --- Search --- //
 // ---------------//
 function select_search(){
+	document.querySelector('#txt_search').focus();
 	document.querySelector('#nav').scrollIntoView({
 		behavior: 'smooth'
 	});
@@ -242,7 +252,7 @@ function search(){
 	closeDialogDeletePeople();
 	closeDialogAddPeople();
 
-	var txt = document.querySelector('#txt-search');
+	var txt = document.querySelector('#txt_search');
 	var type = document.querySelector('#list-search');
 
 	txt.classList.remove('txt-search-error');
@@ -259,7 +269,7 @@ function search(){
 					if (listPeoples.hasOwnProperty(people)){
 						if(listPeoples[people].getLastName.toLowerCase().indexOf(txt.value.toLowerCase()) != -1){
 							i++;
-							var btnDel = '<svg title="Supprimer" id="' + listPeoples[people].getId + '" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
+							var btnDel = '<svg title="Supprimer" value="' + listPeoples[people].getId + '" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
 							if(i%2 == 1){
 								temp += "<tr class='tr__pair' ><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 							}
@@ -276,7 +286,7 @@ function search(){
 					if (listPeoples.hasOwnProperty(people)){
 						if(listPeoples[people].getFirstName.toLowerCase().indexOf(txt.value.toLowerCase()) != -1){
 							i++;
-							var btnDel = '<svg title="Supprimer" id="' + listPeoples[people].getId + '" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
+							var btnDel = '<svg title="Supprimer" value="' + listPeoples[people].getId + '" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
 							if(i%2 == 1){
 								temp += "<tr class='tr__pair' ><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 							}
@@ -322,7 +332,7 @@ function search(){
 	}
 }
 function reloadSearchBar(){	
-	var txt = document.querySelector('#txt-search');
+	var txt = document.querySelector('#txt_search');
 
 	txt.classList.remove('txt-search-error');
 	txt.classList.add('txt-search-good');
@@ -356,18 +366,21 @@ document.querySelector('#menu_deletePeople').addEventListener('click', displayDi
 document.querySelector('#menu_close').addEventListener('click', closeApp);
 document.querySelector('#up').addEventListener('click', home);
 
+// ---  Table --- //
+//document.querySelector('.bin').addEventListener('click', deletePeople);
+
 // --- Dialog - Add People --- //
 document.querySelector('#btn_addPeople').addEventListener('click', addPeople);
 document.querySelector('#close_dialogAddPeople').addEventListener('click', closeDialogAddPeople);
 document.querySelector('#btn_clearAddPeople').addEventListener('click', clearAddPeople);
 
 // --- Dialog - Delete People --- //
-document.querySelector('#btn_deletePeople').addEventListener('click', deletePeople('select'));
+document.querySelector('#btn_deletePeople').addEventListener('click', deletePeople);
 document.querySelector('#close_dialogDeletePeople').addEventListener('click', closeDialogDeletePeople);
 
 // --- Search --- //
 document.querySelector('#menu_searchList').addEventListener('click', select_search);
-document.querySelector('#txt-search').addEventListener('keyup', search);
-document.querySelector('#txt-search').addEventListener('click', search);
-document.querySelector('#txt-search').addEventListener('blur', reloadSearchBar);
+document.querySelector('#txt_search').addEventListener('keyup', search);
+document.querySelector('#txt_search').addEventListener('click', search);
+document.querySelector('#txt_search').addEventListener('blur', reloadSearchBar);
 document.querySelector('#list-search').addEventListener('change', search);
