@@ -226,35 +226,78 @@ function search(){
 	txt.classList.remove('txt-search-error');
 	txt.classList.add('txt-search-good');
 	txt.style.border = "1px solid black";
-
+	
+	var i = 0;
 	if(txt.value.trim() != ""){
-		var select = type.options[type.selectedpeople].text;
-		if(select == 'nom'){
-
+		var select = type.options[type.selectedIndex].value;
+		//dialog.showMessageBox({ message: 'Vous effectuez une recherche sur le mot ' + txt.value + ' de type ' + select, buttons: ["OK"] });
+		var temp = "<tr><th>ID</th><th>Nom</th><th>Prenom</th><th>Téléphone</th><th>Ville</th><th>Code postal</th><th>Adresse</th><th></th></tr>";
+		switch(select) {
+			case "nom" :
+				for(var index in listPeoples) {
+					if (listPeoples.hasOwnProperty(index)){
+						if(listPeoples[index].getLastName.toLowerCase().indexOf(txt.value.toLowerCase()) != -1){
+							var btnDel = '<svg title="Supprimer" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
+							if(i%2 == 1){
+								temp += "<tr class='tr__pair' ><td>" + listPeoples[index].getId +  "</td><td>" + listPeoples[index].getLastName + "</td><td>" + listPeoples[index].getFirstName + "</td><td>" + listPeoples[index].getPhone + "</td><td>" + listPeoples[index].getCity + "</td><td>" + listPeoples[index].getPostalCode + "</td><td>" + listPeoples[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
+							}
+							else{
+								temp += "<tr><td>" + listPeoples[index].getId +  "</td><td>" + listPeoples[index].getLastName + "</td><td>" + listPeoples[index].getFirstName + "</td><td>" + listPeoples[index].getPhone + "</td><td>" + listPeoples[index].getCity + "</td><td>" + listPeoples[index].getPostalCode + "</td><td>" + listPeoples[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
+							}
+							i++;
+						}
+					}
+		
+				}
+				break;
+			case "prenom" :
+				for(var index in listPeoples) {
+					if (listPeoples.hasOwnProperty(index)){
+						if(listPeoples[index].getFirstName.toLowerCase().indexOf(txt.value.toLowerCase()) != -1){
+							var btnDel = '<svg title="Supprimer" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
+							if(i%2 == 1){
+								temp += "<tr class='tr__pair' ><td>" + listPeoples[index].getId +  "</td><td>" + listPeoples[index].getLastName + "</td><td>" + listPeoples[index].getFirstName + "</td><td>" + listPeoples[index].getPhone + "</td><td>" + listPeoples[index].getCity + "</td><td>" + listPeoples[index].getPostalCode + "</td><td>" + listPeoples[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
+							}
+							else{
+								temp += "<tr><td>" + listPeoples[index].getId +  "</td><td>" + listPeoples[index].getLastName + "</td><td>" + listPeoples[index].getFirstName + "</td><td>" + listPeoples[index].getPhone + "</td><td>" + listPeoples[index].getCity + "</td><td>" + listPeoples[index].getPostalCode + "</td><td>" + listPeoples[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
+							}
+							i++;
+						}
+					}
+		
+				}
+				break;
+			case "phone" :
+				for(var index in listPeoples) {
+					if (listPeoples.hasOwnProperty(index)){
+						if(listPeoples[index].getPhone.toLowerCase().indexOf(txt.value.toLowerCase()) != -1){
+							var btnDel = '<svg title="Supprimer" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
+							if(i%2 == 1){
+								temp += "<tr class='tr__pair' ><td>" + listPeoples[index].getId +  "</td><td>" + listPeoples[index].getLastName + "</td><td>" + listPeoples[index].getFirstName + "</td><td>" + listPeoples[index].getPhone + "</td><td>" + listPeoples[index].getCity + "</td><td>" + listPeoples[index].getPostalCode + "</td><td>" + listPeoples[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
+							}
+							else{
+								temp += "<tr><td>" + listPeoples[index].getId +  "</td><td>" + listPeoples[index].getLastName + "</td><td>" + listPeoples[index].getFirstName + "</td><td>" + listPeoples[index].getPhone + "</td><td>" + listPeoples[index].getCity + "</td><td>" + listPeoples[index].getPostalCode + "</td><td>" + listPeoples[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
+							}
+							i++;
+						}
+					}
+		
+				}
+				break;
+			default:
+				temp += "<tr><td colspan='8' >...</td></tr>";
 		}
-		else if(select == 'prenom'){
-
+		if(!i){
+			temp += "<tr><td colspan='8' >...</td></tr>";
 		}
-		else if(select == 'phone'){
-
-		}
-		else if(select == 'city'){
-
-		}
-		else if(select == 'postal'){
-
-		}
-		else if(select == 'addr'){
-
-		}
-		dialog.showMessageBox({ message: 'Vous effectuez une recherche sur le mot ' + txt.value + ' de type ' + select, buttons: ["OK"] });
+		document.querySelector('#list_Peoples').innerHTML = temp;
 	}
 	else{
 		txt.focus();	
 		txt.classList.add('txt-search-error');
 		txt.classList.remove('txt-search-good');
 		txt.style.border = "1px solid red";
-		dialog.showErrorBox('Erreur !', 'L\'application a rencontré une erreur. Votre ordinateur va s\'auto-détruire dans 10 secondes.');
+		document.querySelector('#list_Peoples').innerHTML = viewPeoples('table');
 	}
 }
 
@@ -286,5 +329,6 @@ document.querySelector('#btn_deletePeople').addEventListener('click', deletePeop
 document.querySelector('#close_dialogDeletePeople').addEventListener('click', closeDialogDeletePeople);
 
 // --- Search --- //
-document.querySelector('#btn_search').addEventListener('click', search);
 document.querySelector('#menu_searchList').addEventListener('click', select_search);
+document.querySelector('#txt-search').addEventListener('keyup', search);
+document.querySelector('#list-search').addEventListener('change', search);
