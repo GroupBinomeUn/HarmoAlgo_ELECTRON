@@ -113,16 +113,20 @@ function clearAddPeople() {
 }
 
 
-// --------------------------//
+// -----------------------------//
 // --- Dialog Delete People --- //
-// --------------------------//
-function deletePeople() {
+// -----------------------------//
+function deletePeople(type) {
 	var id = document.getElementById('select_listPeoples').value;
-	/*
-	var thePeople = new Peoples();
-	thePeople.retrieve(id);
-	*/
-	listPeoples.remove[listPeoples.selectedIndex];
+	var index = listPeoples.findIndex(obj => obj.id === id);
+	if (type == 'select') {
+		if (index >= 0) {
+			listPeoples.splice(index, 1);
+		}
+	}
+	else if (type == 'table') {
+		
+	}	
 	update();
 }
 
@@ -202,6 +206,7 @@ function loadFile(){
     /* à terminer */
 }
 function saveFile(){
+	/* à treminer */
 	function toJSONString( form ) {
 		var obj = {};
 		var elements = form.querySelectorAll( "input, select, textarea" );
@@ -354,7 +359,7 @@ document.querySelector('#close_dialogAddPeople').addEventListener('click', close
 document.querySelector('#btn_clearAddPeople').addEventListener('click', clearAddPeople);
 
 // --- Dialog - Delete People --- //
-document.querySelector('#btn_deletePeople').addEventListener('click', deletePeople);
+document.querySelector('#btn_deletePeople').addEventListener('click', deletePeople('select'));
 document.querySelector('#close_dialogDeletePeople').addEventListener('click', closeDialogDeletePeople);
 
 // --- Search --- //
