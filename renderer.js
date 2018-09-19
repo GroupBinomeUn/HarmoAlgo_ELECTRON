@@ -113,9 +113,9 @@ function clearAddPeople() {
 }
 
 
-// --------------------------//
+// -----------------------------//
 // --- Dialog Delete People --- //
-// --------------------------//
+// -----------------------------//
 function deletePeople(type) {
 	var id = document.getElementById('select_listPeoples').value;
 	var index = listPeoples.findIndex(obj => obj.id === id);
