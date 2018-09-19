@@ -117,7 +117,6 @@ function clearAddPeople() {
 // -----------------------------//
 // --- Dialog Delete People --- //
 // -----------------------------//
-<<<<<<< HEAD
 function deletePeople() {
 	var idSelect = document.getElementById('select_listPeoples').value;
 	var idTable = this.id;
@@ -228,10 +227,11 @@ function loadFile(){
 	//deserialize(str, [context])
 }
 function saveFile(){
+	var saveJSON = null;
 	for(var people in listPeoples) { 
 		if (listPeoples.hasOwnProperty(people)) {			
 			var lePeople = new Peoples(listPeoples[people].getId, listPeoples[people].getLastName, listPeoples[people].getFirstName, listPeoples[people].getPhone, listPeoples[people].getCity, listPeoples[people].getPostalCode, listPeoples[people].getAddress);
-			console.log(serialize(lePeople));
+			saveJSON += serialize(lePeople);
 		}
 	}
 }
@@ -240,7 +240,7 @@ function saveFile(){
 // --- Search --- //
 // ---------------//
 function select_search(){
-	document.querySelector('#txt_search').focus();
+	document.querySelector('#txt-search').focus();
 	document.querySelector('#nav').scrollIntoView({
 		behavior: 'smooth'
 	});
@@ -252,12 +252,12 @@ function search(){
 	closeDialogDeletePeople();
 	closeDialogAddPeople();
 
-	var txt = document.querySelector('#txt_search');
+	var txt = document.querySelector('#txt-search');
 	var type = document.querySelector('#list-search');
 
 	txt.classList.remove('txt-search-error');
 	txt.classList.add('txt-search-good');
-	txt.style.border = "1px solid black";
+	txt.style.border = "1px solid #6692ff";
 	
 	var i = 0;
 	if(txt.value.trim() != ""){
@@ -327,16 +327,16 @@ function search(){
 		txt.focus();	
 		txt.classList.add('txt-search-error');
 		txt.classList.remove('txt-search-good');
-		txt.style.border = "1px solid red";
+		txt.style.border = "1px solid #ff2929";
 		document.querySelector('#table_listPeoples').innerHTML = viewPeoples('table');
 	}
 }
 function reloadSearchBar(){	
-	var txt = document.querySelector('#txt_search');
+	var txt = document.querySelector('#txt-search');
 
 	txt.classList.remove('txt-search-error');
 	txt.classList.add('txt-search-good');
-	txt.style.border = "1px solid black";
+	txt.style.border = "1px solid #6692ff";
 }
 
 
@@ -380,7 +380,7 @@ document.querySelector('#close_dialogDeletePeople').addEventListener('click', cl
 
 // --- Search --- //
 document.querySelector('#menu_searchList').addEventListener('click', select_search);
-document.querySelector('#txt_search').addEventListener('keyup', search);
-document.querySelector('#txt_search').addEventListener('click', search);
-document.querySelector('#txt_search').addEventListener('blur', reloadSearchBar);
+document.querySelector('#txt-search').addEventListener('keyup', search);
+document.querySelector('#txt-search').addEventListener('click', search);
+document.querySelector('#txt-search').addEventListener('blur', reloadSearchBar);
 document.querySelector('#list-search').addEventListener('change', search);
