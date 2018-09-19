@@ -2,6 +2,7 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 const {dialog} = require('electron').remote;
+var serialize = require('serialize-javascript');
 
 //dialog.showErrorBox('Erreur !', 'L\'application a rencontré une erreur. Votre ordinateur va s\'auto-détruire dans 10 secondes.');4
 
@@ -149,7 +150,6 @@ function viewPeoples(type) {
 	if (type == 'table') {
 		var temp = '<tr><th>Position</th><th>Nom</th><th>Prenom</th><th>Téléphone</th><th>Ville</th><th>Code postal</th><th>Adresse</th><th></th></tr>';
 	}
-
 	if(listPeoples.length >= 1) {
 		for(var people in listPeoples) { 
 			if (listPeoples.hasOwnProperty(people)) {
@@ -198,6 +198,7 @@ function displayDialogAddPeople() {
 	document.querySelector('#list').scrollIntoView({
 		behavior: 'smooth'
 	});
+	closeDialogDeletePeople();
 }
 function displayDialogDeletePeople() {
 	document.querySelector('#select_listPeoples').innerHTML = viewPeoples('select');
@@ -205,6 +206,7 @@ function displayDialogDeletePeople() {
 	document.querySelector('#list').scrollIntoView({
 		behavior: 'smooth'
 	});
+	closeDialogAddPeople();
 }
 
 
@@ -223,39 +225,16 @@ function closeDialogDeletePeople() {
 // ---Files --- //
 // -------------//
 function loadFile(){
-    /* à terminer */
+	//deserialize(str, [context])
 }
 function saveFile(){
-	/* à treminer */
-	function toJSONString( form ) {
-		var obj = {};
-		var elements = form.querySelectorAll( "input, select, textarea" );
-		for( var i = 0; i < elements.length; ++i ) {
-			var element = elements[i];
-			var name = element.name;
-			var value = element.value;
-
-			if( name ) {
-				obj[ name ] = value;
-			}
+	for(var people in listPeoples) { 
+		if (listPeoples.hasOwnProperty(people)) {			
+			var lePeople = new Peoples(listPeoples[people].getId, listPeoples[people].getLastName, listPeoples[people].getFirstName, listPeoples[people].getPhone, listPeoples[people].getCity, listPeoples[people].getPostalCode, listPeoples[people].getAddress);
+			console.log(serialize(lePeople));
 		}
-
-		return JSON.stringify( obj );
 	}
-
-	document.addEventListener( "DOMContentLoaded", function() {
-		var form = document.querySelector("#test");
-		var output = document.querySelector("#output");
-		form.addEventListener( "submit", function( e ) {
-			e.preventDefault();
-			var json = toJSONString( this );
-			output.innerHTML = json;
-
-		}, false);
-
-	});
 }
-
 
 // ---------------//
 // --- Search --- //
@@ -265,8 +244,14 @@ function select_search(){
 	document.querySelector('#nav').scrollIntoView({
 		behavior: 'smooth'
 	});
+	closeDialogDeletePeople();
+	closeDialogAddPeople();
+	document.querySelector('#txt-search').focus();
 }
-function search(){
+function search(){	
+	closeDialogDeletePeople();
+	closeDialogAddPeople();
+
 	var txt = document.querySelector('#txt_search');
 	var type = document.querySelector('#list-search');
 
@@ -362,16 +347,24 @@ function closeApp(){
     window.close();
 }
 
+// -------------//
+// --- Home --- //
+// -------------//
+function home(){
+	document.querySelector('#nav').scrollIntoView({
+		behavior: 'smooth'
+	});
+}
+
 // --- Menu --- //
 document.addEventListener('DOMContentLoaded', update());
 document.querySelector('#menu_loadFile').addEventListener('click', loadFile);
 document.querySelector('#menu_saveFile').addEventListener('click', saveFile);
 document.querySelector('#menu_addPeople').addEventListener('click', displayDialogAddPeople);
+document.querySelector('#svg_addPeople').addEventListener('click', displayDialogAddPeople);
 document.querySelector('#menu_deletePeople').addEventListener('click', displayDialogDeletePeople);
 document.querySelector('#menu_close').addEventListener('click', closeApp);
-
-// --- SVG --- //
-document.querySelector('#svg_addPeople').addEventListener('click', displayDialogAddPeople);
+document.querySelector('#up').addEventListener('click', home);
 
 // --- Dialog - Add People --- //
 document.querySelector('#btn_addPeople').addEventListener('click', addPeople);
