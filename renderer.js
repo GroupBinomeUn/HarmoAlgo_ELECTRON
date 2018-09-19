@@ -3,9 +3,13 @@
 // All of the Node.js APIs are available in this process.
 const {dialog} = require('electron').remote;
 
-//dialog.showErrorBox('Erreur !', 'L\'application a rencontré une erreur. Votre ordinateur va s\'auto-détruire dans 10 secondes.');
+//dialog.showErrorBox('Erreur !', 'L\'application a rencontré une erreur. Votre ordinateur va s\'auto-détruire dans 10 secondes.');4
 
-function addContact() {
+
+// --------------------------//
+// --- Dialog Add People --- //
+// --------------------------//
+function addPeople() {
 	if (verifyAddPeople()) {
 		var lastName = document.getElementById('lastName').value;
 		var firstName = document.getElementById('firstName').value;
@@ -15,38 +19,13 @@ function addContact() {
 		var address = document.getElementById('address').value;
 		var thePeople = new Peoples(lastId++, lastName, firstName, phone, city, postalCode, address);
 		listPeoples.push(thePeople);
-		document.querySelector('#dialog-add-contact').style.display = "none";
-		document.querySelector('#list_Peoples').innerHTML = viewPeoples('table');
-		clearAddContact();
+		
+		document.querySelector('#dialog_deletePeople').style.display = "none";
+		document.querySelector('#table_listPeoples').innerHTML = viewPeoples('table');
+		
+		clearAddPeople();
 	}
 }
-
-function clearAddContact() {
-	document.getElementById('lastName').value = "";
-	document.getElementById('lastName').style = "border-color:dark";
-	document.getElementById('text_lastName').innerHTML = "";
-	
-	document.getElementById('firstName').value = "";
-	document.getElementById('firstName').style = "border-color:dark";
-	document.getElementById('text_firstName').innerHTML = "";
-	
-	document.getElementById('phone').value = "";
-	document.getElementById('phone').style = "border-color:dark";
-	document.getElementById('text_phone').innerHTML = "";	
-	
-	document.getElementById('city').value = "";
-	document.getElementById('city').style = "border-color:dark";
-	document.getElementById('text_city').innerHTML = "";
-	
-	document.getElementById('postalCode').value = "";
-	document.getElementById('postalCode').style = "border-color:dark";
-	document.getElementById('text_postalCode').innerHTML = "";
-	
-	document.getElementById('address').value = "";
-	document.getElementById('address').style = "border-color:dark";
-	document.getElementById('text_address').innerHTML = "";
-}
-
 function verifyAddPeople() {
 	if (document.getElementById('lastName').value != "" && document.getElementById('firstName').value != "" && document.getElementById('phone').value != "" && document.getElementById('city').value != "" && document.getElementById('postalCode').value != "" && document.getElementById('address').value != "") {
 		return true;
@@ -107,28 +86,66 @@ function verifyAddPeople() {
 		}
 	}
 }
-
-function update(){	
-	document.querySelector('#list_Peoples').innerHTML = viewPeoples('table');
-	document.querySelector('#list-contact-to-delete').innerHTML = viewPeoples('select');
+function clearAddPeople() {
+	document.getElementById('lastName').value = "";
+	document.getElementById('lastName').style = "border-color:dark";
+	document.getElementById('text_lastName').innerHTML = "";
+	
+	document.getElementById('firstName').value = "";
+	document.getElementById('firstName').style = "border-color:dark";
+	document.getElementById('text_firstName').innerHTML = "";
+	
+	document.getElementById('phone').value = "";
+	document.getElementById('phone').style = "border-color:dark";
+	document.getElementById('text_phone').innerHTML = "";	
+	
+	document.getElementById('city').value = "";
+	document.getElementById('city').style = "border-color:dark";
+	document.getElementById('text_city').innerHTML = "";
+	
+	document.getElementById('postalCode').value = "";
+	document.getElementById('postalCode').style = "border-color:dark";
+	document.getElementById('text_postalCode').innerHTML = "";
+	
+	document.getElementById('address').value = "";
+	document.getElementById('address').style = "border-color:dark";
+	document.getElementById('text_address').innerHTML = "";
 }
 
+
+// --------------------------//
+// --- Dialog Delete People --- //
+// --------------------------//
+function deletePeople() {
+	var id = document.getElementById('select_listPeoples').value;
+	/*
+	var thePeople = new Peoples();
+	thePeople.retrieve(id);
+	*/
+	listPeoples.remove[listPeoples.selectedIndex];
+	update();
+}
+
+
+// ----------------------//
+// --- Table Peoples --- //
+// ----------------------//
 function viewPeoples(type) {
 	var i = 0;
 	if(listPeoples.length >= 1) {
 		var temp = "<tr><th>ID</th><th>Nom</th><th>Prenom</th><th>Téléphone</th><th>Ville</th><th>Code postal</th><th>Adresse</th><th></th></tr>";
-		for(var index in listPeoples) { 
-			if (listPeoples.hasOwnProperty(index)) {
+		for(var people in listPeoples) { 
+			if (listPeoples.hasOwnProperty(people)) {
 				if(type == 'select'){
-					temp += "<option value='" + listPeoples[index].getId + "' >" + listPeoples[index].getLastName + " " + listPeoples[index].getFirstName + " - " + listPeoples[index].getPhone + " - " + listPeoples[index].getCity + ", " + listPeoples[index].getPostalCode + " | " + listPeoples[index].getAddress + ".</option>";
+					temp += "<option value='" + listPeoples[people].getId + "' >" + listPeoples[people].getLastName + " " + listPeoples[people].getFirstName + " - " + listPeoples[people].getPhone + " - " + listPeoples[people].getCity + ", " + listPeoples[people].getPostalCode + " | " + listPeoples[people].getAddress + ".</option>";
 				}
 				else{
 					var btnDel = '<svg title="Supprimer" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
 					if(i%2 == 1){
-						temp += "<tr class='tr__pair' ><td>" + listPeoples[index].getId +  "</td><td>" + listPeoples[index].getLastName + "</td><td>" + listPeoples[index].getFirstName + "</td><td>" + listPeoples[index].getPhone + "</td><td>" + listPeoples[index].getCity + "</td><td>" + listPeoples[index].getPostalCode + "</td><td>" + listPeoples[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
+						temp += "<tr class='tr__pair' ><td>" + listPeoples[people].getId +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 					}
 					else{
-						temp += "<tr><td>" + listPeoples[index].getId +  "</td><td>" + listPeoples[index].getLastName + "</td><td>" + listPeoples[index].getFirstName + "</td><td>" + listPeoples[index].getPhone + "</td><td>" + listPeoples[index].getCity + "</td><td>" + listPeoples[index].getPostalCode + "</td><td>" + listPeoples[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
+						temp += "<tr><td>" + listPeoples[people].getId +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 					}
 					i++;
 				}
@@ -138,38 +155,66 @@ function viewPeoples(type) {
 	}
 }
 
-function displayDialogAddContact() {
-	clearAddContact();
-	document.querySelector('#dialog-add-contact').style.display = "block";
+
+// ---------------//
+// --- Update --- //
+// ---------------//
+function update(){	
+	document.querySelector('#table_listPeoples').innerHTML = viewPeoples('table');
+	document.querySelector('#select_listPeoples').innerHTML = viewPeoples('select');
+}
+
+
+// ------------------------//
+// ---- Display Dialog --- //
+// ------------------------//
+function displayDialogAddPeople() {
+	clearAddPeople();
+	document.querySelector('#dialog_addPeople').style.display = "block";
+	document.querySelector('#list').scrollIntoView({
+		behavior: 'smooth'
+	});
+}
+function displayDialogDeletePeople() {
+	document.querySelector('#select_listPeoples').innerHTML = viewPeoples('select');
+	document.querySelector('#dialog_deletePeople').style.display = "block";
 	document.querySelector('#list').scrollIntoView({
 		behavior: 'smooth'
 	});
 }
 
-function displayDialogDelContact() {
-	document.querySelector('#list-contact-to-delete').innerHTML = viewPeoples('select');
-	document.querySelector('#dialog-del-contact').style.display = "block";
-	document.querySelector('#list').scrollIntoView({
-		behavior: 'smooth'
-	});
+
+// ---------------------//
+// --- Close Dialog --- //
+// ---------------------//
+function closeDialogAddPeople() {
+    document.querySelector('#dialog_addPeople').style.display = "none";
+}
+function closeDialogDeletePeople() {
+    document.querySelector('#dialog_deletePeople').style.display = "none";
 }
 
-function closeDialogAddContact() {
-    document.querySelector('#dialog-add-contact').style.display = "none";
-}
 
-function closeDialogDelContact() {
-    document.querySelector('#dialog-del-contact').style.display = "none";
-}
-
+// -------------//
+// ---Files --- //
+// -------------//
 function loadFile(){
     /* à terminer */
 }
-
 function saveFile(){
     /* à terminer */
 }
 
+
+// ---------------//
+// --- Search --- //
+// ---------------//
+function select_search(){
+	document.querySelector('#txt-search').focus();
+	document.querySelector('#nav').scrollIntoView({
+		behavior: 'smooth'
+	});
+}
 function search(){
 	var txt = document.querySelector('#txt-search');
 	var type = document.querySelector('#list-search');
@@ -252,34 +297,34 @@ function search(){
 	}
 }
 
-function select_search(){
-	document.querySelector('#txt-search').focus();
-	document.querySelector('#nav').scrollIntoView({
-		behavior: 'smooth'
-	});
-}
-
+// --------------//
+// --- Close --- //
+// --------------//
 function closeApp(){
     window.close();
 }
 
+// --- Menu --- //
 document.addEventListener('DOMContentLoaded', update());
-document.querySelector('#close_app').addEventListener('click', closeApp);
-document.querySelector('#load_file').addEventListener('click', loadFile);
-document.querySelector('#save_file').addEventListener('click', saveFile);
+document.querySelector('#menu_loadFile').addEventListener('click', loadFile);
+document.querySelector('#menu_saveFile').addEventListener('click', saveFile);
+document.querySelector('#menu_addPeople').addEventListener('click', displayDialogAddPeople);
+document.querySelector('#menu_deletePeople').addEventListener('click', displayDialogDeletePeople);
+document.querySelector('#menu_close').addEventListener('click', closeApp);
 
-//Add People
-document.querySelector('#btn_addPeople').addEventListener('click', addContact);
-document.querySelector('#svg_addContact').addEventListener('click', displayDialogAddContact);
-document.querySelector('#close-add-dialog').addEventListener('click', closeDialogAddContact);
-document.querySelector('#menu_addPeople').addEventListener('click', displayDialogAddContact);
-document.querySelector('#btn_clearAddPeople').addEventListener('click', clearAddContact);
+// --- SVG --- //
+document.querySelector('#svg_addPeople').addEventListener('click', displayDialogAddPeople);
 
-//Delete People
-document.querySelector('#btn_deletePeople').addEventListener('click', displayDialogDelContact);
-document.querySelector('#close-del-dialog').addEventListener('click', closeDialogDelContact);
+// --- Dialog - Add People --- //
+document.querySelector('#btn_addPeople').addEventListener('click', addPeople);
+document.querySelector('#close_dialogAddPeople').addEventListener('click', closeDialogAddPeople);
+document.querySelector('#btn_clearAddPeople').addEventListener('click', clearAddPeople);
 
-//Search
+// --- Dialog - Delete People --- //
+document.querySelector('#btn_deletePeople').addEventListener('click', deletePeople);
+document.querySelector('#close_dialogDeletePeople').addEventListener('click', closeDialogDeletePeople);
+
+// --- Search --- //
+document.querySelector('#menu_searchList').addEventListener('click', select_search);
 document.querySelector('#txt-search').addEventListener('keyup', search);
 document.querySelector('#list-search').addEventListener('change', search);
-document.querySelector('#search_list').addEventListener('click', select_search);

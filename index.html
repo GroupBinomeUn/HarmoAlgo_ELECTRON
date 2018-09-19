@@ -3,17 +3,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Carnet d'adresses</title>
-		<!-- fichiers à importer -->
+		<!-- Import files -->
 		<link rel="stylesheet" href="resources/css/meyerweb.css">
 		<link rel="stylesheet" href="resources/css/style.css">
 		<link rel="stylesheet" href="resources/svg/style.css">
 		<script defer src="resources/svg/svgxuse.js"></script>
-		<!-- Script à importer -->
+		<!-- Import scripts -->
 		<script src="classes/Global.js" type="text/javascript"></script>
 		<script src="classes/People.js" type="text/javascript"></script>
 		<script src="application/app.js" type="text/javascript"></script>
 		<script src="application/functions.js" type="text/javascript"></script>
-		<!-- main height auto -->
 	</head>	
 	<body>
 		<!--
@@ -36,32 +35,32 @@
 						</a>
 					</li>
 					<li>
-						<a id="load_file" title="Charger" >
+						<a id="menu_loadFile" title="Charger" >
 							<svg class="icon icon-upload"><use xlink:href="#icon-upload"></use></svg>
 						</a>
 					</li>
 					<li>
-						<a id="save_file" title="Sauvegarder" >
+						<a id="menu_saveFile" title="Sauvegarder" >
 							<svg class="icon icon-download"><use xlink:href="#icon-download"></use></svg>
 						</a>
 					</li>
 					<li>
-						<a title="Ajouter contact" id="menu_addPeople" >
+						<a id="menu_addPeople" title="Ajouter contact" >
 							<svg class="icon icon-address-book"><use xlink:href="#icon-address-book"></use></svg>
 						</a>
 					</li>
 					<li>
-						<a id="search_list" title="Rechercher contact" >
+						<a id="menu_searchList" title="Rechercher contact" >
 							<svg class="icon icon-search"><use xlink:href="#icon-search"></use></svg>
 						</a>
 					</li>
 					<li>
-						<a id="del_contact" title="Supprimer contact" >
+						<a id="menu_deletePeople" title="Supprimer contact" >
 							<svg class="icon icon-bin"><use xlink:href="#icon-bin"></use></svg>
 						</a>
 					</li>
 					<li>
-						<a href="#" id="close_app" title="Quitter" >
+						<a href="#" id="menu_close" title="Quitter" >
 							<svg class="icon icon-exit"><use xlink:href="#icon-exit"></use></svg>
 						</a>
 					</li>
@@ -79,21 +78,21 @@
 				  </select> 
 				  <input type="text" id="txt-search" class="txt-search-good" placeholder="Rechercher..." />
 			</div>
-			<table id ="list_Peoples">
+			<table id ="table_listPeoples">
 				<tr>
 					<th>ID</th><th>Nom</th><th>Prenom</th><th>Téléphone</th><th>Ville</th><th>Code postal</th><th>Adresse</th><th></th>
 				</tr>
 				<tr><td colspan="8" >...</td></tr>
 			</table>
 			<div>
-				<svg id="svg_addContact" title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg>
+				<svg id="svg_addPeople" title="Ajouter un contact" class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg>
 			</div>
 		</section>
 
-        <div class="dialog" id="dialog-add-contact" >
+        <div class="dialog" id="dialog_addPeople" >
 			<div class="headerDialog" >
 				<span id="titre" >Ajout d'un contact</span>
-				<span id="close-add-dialog" class='close' >X</span>
+				<span id="close_dialogAddPeople" class='close' >X</span>
 			</div>
 			<div class="bodyDialog">
 				<input id="lastName" type="text" placeholder="Nom" maxlength="100">
@@ -115,13 +114,13 @@
 			</div>	
 		</div>
 
-        <div class="dialog" id="dialog-del-contact" >
+        <div class="dialog" id="dialog_deletePeople" >
 			<div class="headerDialog" >
 				<span id="titre" >Suppression d'un contact</span>
-				<span id="close-del-dialog" class='close' >X</span>
+				<span id="close_dialogDeletePeople" class='close' >X</span>
 			</div>
 			<div class="bodyDialog" >
-				<select class="list-search" id="list-contact-to-delete" >
+				<select class="list-search" id="select_listPeoples" >
 					<option value="null" disabled selected >...</option>
 				</select>
 				<br>
