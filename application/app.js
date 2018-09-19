@@ -3,7 +3,7 @@
 var lePeople = new Peoples();
 
 var lePeople = new Peoples("1", "George", "Pompidou", "0554684548", "Paris", "75000", "15 rue des Mimosa");
-var lePeople2 = new Peoples("2", "Dumas", "François", "05554548754", "Paris", "75000", "5 rue des Mimosa");
+var lePeople2 = new Peoples("2", "Dumas", "François", "0555454875", "Paris", "75000", "5 rue des Mimosa");
 var lePeople3 = new Peoples("3", "Jean-Paul", "Rustre", "0555445875", "Paris", "75000", "2 rue des Mimosa");
 var lePeople4 = new Peoples("4", "Jean", "Tapis", "0555884525", "Paris", "75000", "10 rue des Mimosa");
 var lePeople5 = new Peoples("5", "Bernard", "Check", "0556987425", "Paris", "75000", "44 rue des Mimosa");
