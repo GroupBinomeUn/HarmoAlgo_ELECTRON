@@ -56,7 +56,7 @@ function verifyAddPeople() {
 		}
 		else {
 			document.querySelector('#phone').style = "border-color:dark";
-			document.querySelector('#text_phone').innerHTML = "";	
+			document.querySelector('#text_phone').innerHTML = "";
 		}
 		
 		if (document.querySelector('#city').value == "") {
@@ -65,7 +65,7 @@ function verifyAddPeople() {
 		}
 		else {
 			document.querySelector('#city').style = "border-color:dark";
-			document.querySelector('#text_city').innerHTML = "";	
+			document.querySelector('#text_city').innerHTML = "";
 		}
 		
 		if (document.querySelector('#postalCode').value == "" || document.querySelector('#postalCode').length != 5) {
@@ -74,7 +74,7 @@ function verifyAddPeople() {
 		}
 		else {
 			document.querySelector('#postalCode').style = "border-color:dark";
-			document.querySelector('#text_postalCode').innerHTML = "";	
+			document.querySelector('#text_postalCode').innerHTML = "";
 		}
 		
 		if (document.querySelector('#address').value == "") {
@@ -117,9 +117,8 @@ function clearAddPeople() {
 // -----------------------------//
 // --- Dialog Delete People --- //
 // -----------------------------//
-function deletePeople() {
+function select_deletePeople() {
 	var idSelect = document.getElementById('select_listPeoples').value;
-	var idTable = this.id;
 	
 	if (idSelect != null) {
 		var index = listPeoples.findIndex(obj => obj.id == idSelect);
@@ -128,15 +127,17 @@ function deletePeople() {
 			listPeoples.splice(index, 1);
 			listPeoples.slice(index + 1);
 		}
-	}
-	else if (idTable != null) {
+	}	
+	update();
+}
+function table_deletePeople(idTable) {
+	if (idTable != null) {
 		var index = listPeoples.findIndex(obj => obj.id == idTable);
 		if (index >= 0) {
 			listPeoples.splice(index, 1);
 			listPeoples.slice(index + 1);
 		}
 	}
-	
 	update();
 }
 
@@ -157,7 +158,7 @@ function viewPeoples(type) {
 				}
 				else{
 					i++;
-					var btnDel = '<svg title="Supprimer" value="' + listPeoples[people].getId + '" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
+					var btnDel = '<svg title="Supprimer" onclick="table_deletePeople(' + listPeoples[people].getId + ');" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
 					if(i%2 == 1){
 						temp += "<tr class='tr__pair' ><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 					}
@@ -269,7 +270,7 @@ function search(){
 					if (listPeoples.hasOwnProperty(people)){
 						if(listPeoples[people].getLastName.toLowerCase().indexOf(txt.value.toLowerCase()) != -1){
 							i++;
-							var btnDel = '<svg title="Supprimer" value="' + listPeoples[people].getId + '" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
+							var btnDel = '<svg title="Supprimer" onclick="table_deletePeople(' + listPeoples[people].getId + ');" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
 							if(i%2 == 1){
 								temp += "<tr class='tr__pair' ><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 							}
@@ -286,7 +287,7 @@ function search(){
 					if (listPeoples.hasOwnProperty(people)){
 						if(listPeoples[people].getFirstName.toLowerCase().indexOf(txt.value.toLowerCase()) != -1){
 							i++;
-							var btnDel = '<svg title="Supprimer" value="' + listPeoples[people].getId + '" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
+							var btnDel = '<svg title="Supprimer" onclick="table_deletePeople(' + listPeoples[people].getId + ');" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
 							if(i%2 == 1){
 								temp += "<tr class='tr__pair' ><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 							}
@@ -303,7 +304,7 @@ function search(){
 					if (listPeoples.hasOwnProperty(people)){
 						if(listPeoples[people].getPhone.toLowerCase().indexOf(txt.value.toLowerCase()) != -1){
 							i++;
-							var btnDel = '<svg title="Supprimer" id="' + listPeoples[people].getId + '" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
+							var btnDel = '<svg title="Supprimer" onclick="table_deletePeople(' + listPeoples[people].getId + ');" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
 							if(i%2 == 1){
 								temp += "<tr class='tr__pair' ><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 							}
@@ -366,16 +367,13 @@ document.querySelector('#menu_deletePeople').addEventListener('click', displayDi
 document.querySelector('#menu_close').addEventListener('click', closeApp);
 document.querySelector('#up').addEventListener('click', home);
 
-// ---  Table --- //
-//document.querySelector('.bin').addEventListener('click', deletePeople);
-
 // --- Dialog - Add People --- //
 document.querySelector('#btn_addPeople').addEventListener('click', addPeople);
 document.querySelector('#close_dialogAddPeople').addEventListener('click', closeDialogAddPeople);
 document.querySelector('#btn_clearAddPeople').addEventListener('click', clearAddPeople);
 
 // --- Dialog - Delete People --- //
-document.querySelector('#btn_deletePeople').addEventListener('click', deletePeople);
+document.querySelector('#btn_deletePeople').addEventListener('click', select_deletePeople);
 document.querySelector('#close_dialogDeletePeople').addEventListener('click', closeDialogDeletePeople);
 
 // --- Search --- //
