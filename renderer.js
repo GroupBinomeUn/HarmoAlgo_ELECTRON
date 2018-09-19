@@ -133,21 +133,21 @@ function deletePeople() {
 function viewPeoples(type) {
 	var i = 0;
 	if(listPeoples.length >= 1) {
-		var temp = "<tr><th>ID</th><th>Nom</th><th>Prenom</th><th>Téléphone</th><th>Ville</th><th>Code postal</th><th>Adresse</th><th></th></tr>";
+		var temp = "<tr><th>Position</th><th>Nom</th><th>Prenom</th><th>Téléphone</th><th>Ville</th><th>Code postal</th><th>Adresse</th><th></th></tr>";
 		for(var people in listPeoples) { 
 			if (listPeoples.hasOwnProperty(people)) {
 				if(type == 'select'){
-					temp += "<option value='" + listPeoples[people].getId + "' >" + listPeoples[people].getLastName + " " + listPeoples[people].getFirstName + " - " + listPeoples[people].getPhone + " - " + listPeoples[people].getCity + ", " + listPeoples[people].getPostalCode + " | " + listPeoples[people].getAddress + ".</option>";
+					temp += "<option value='" + i + "' >" + listPeoples[people].getLastName + " " + listPeoples[people].getFirstName + " - " + listPeoples[people].getPhone + " - " + listPeoples[people].getCity + ", " + listPeoples[people].getPostalCode + " | " + listPeoples[people].getAddress + ".</option>";
 				}
 				else{
-					var btnDel = '<svg title="Supprimer" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
+					i++;
+					var btnDel = '<svg title="Supprimer" id="' + listPeoples[people].getId + '" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
 					if(i%2 == 1){
-						temp += "<tr class='tr__pair' ><td>" + listPeoples[people].getId +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
+						temp += "<tr class='tr__pair' ><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 					}
 					else{
-						temp += "<tr><td>" + listPeoples[people].getId +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
+						temp += "<tr><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 					}
-					i++;
 				}
 			}
 		}
@@ -202,7 +202,33 @@ function loadFile(){
     /* à terminer */
 }
 function saveFile(){
-    /* à terminer */
+	function toJSONString( form ) {
+		var obj = {};
+		var elements = form.querySelectorAll( "input, select, textarea" );
+		for( var i = 0; i < elements.length; ++i ) {
+			var element = elements[i];
+			var name = element.name;
+			var value = element.value;
+
+			if( name ) {
+				obj[ name ] = value;
+			}
+		}
+
+		return JSON.stringify( obj );
+	}
+
+	document.addEventListener( "DOMContentLoaded", function() {
+		var form = document.getElementById( "test" );
+		var output = document.getElementById( "output" );
+		form.addEventListener( "submit", function( e ) {
+			e.preventDefault();
+			var json = toJSONString( this );
+			output.innerHTML = json;
+
+		}, false);
+
+	});
 }
 
 
@@ -226,55 +252,54 @@ function search(){
 	var i = 0;
 	if(txt.value.trim() != ""){
 		var select = type.options[type.selectedIndex].value;
-		//dialog.showMessageBox({ message: 'Vous effectuez une recherche sur le mot ' + txt.value + ' de type ' + select, buttons: ["OK"] });
-		var temp = "<tr><th>ID</th><th>Nom</th><th>Prenom</th><th>Téléphone</th><th>Ville</th><th>Code postal</th><th>Adresse</th><th></th></tr>";
+		var temp = "<tr><th>Position</th><th>Nom</th><th>Prenom</th><th>Téléphone</th><th>Ville</th><th>Code postal</th><th>Adresse</th><th></th></tr>";
 		switch(select) {
 			case "nom" :
-				for(var index in listPeoples) {
-					if (listPeoples.hasOwnProperty(index)){
-						if(listPeoples[index].getLastName.toLowerCase().indexOf(txt.value.toLowerCase()) != -1){
-							var btnDel = '<svg title="Supprimer" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
+				for(var people in listPeoples) {
+					if (listPeoples.hasOwnProperty(people)){
+						if(listPeoples[people].getLastName.toLowerCase().indexOf(txt.value.toLowerCase()) != -1){
+							i++;
+							var btnDel = '<svg title="Supprimer" id="' + listPeoples[people].getId + '" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
 							if(i%2 == 1){
-								temp += "<tr class='tr__pair' ><td>" + listPeoples[index].getId +  "</td><td>" + listPeoples[index].getLastName + "</td><td>" + listPeoples[index].getFirstName + "</td><td>" + listPeoples[index].getPhone + "</td><td>" + listPeoples[index].getCity + "</td><td>" + listPeoples[index].getPostalCode + "</td><td>" + listPeoples[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
+								temp += "<tr class='tr__pair' ><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 							}
 							else{
-								temp += "<tr><td>" + listPeoples[index].getId +  "</td><td>" + listPeoples[index].getLastName + "</td><td>" + listPeoples[index].getFirstName + "</td><td>" + listPeoples[index].getPhone + "</td><td>" + listPeoples[index].getCity + "</td><td>" + listPeoples[index].getPostalCode + "</td><td>" + listPeoples[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
+								temp += "<tr><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 							}
-							i++;
 						}
 					}
 		
 				}
 				break;
 			case "prenom" :
-				for(var index in listPeoples) {
-					if (listPeoples.hasOwnProperty(index)){
-						if(listPeoples[index].getFirstName.toLowerCase().indexOf(txt.value.toLowerCase()) != -1){
-							var btnDel = '<svg title="Supprimer" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
+				for(var people in listPeoples) {
+					if (listPeoples.hasOwnProperty(people)){
+						if(listPeoples[people].getFirstName.toLowerCase().indexOf(txt.value.toLowerCase()) != -1){
+							i++;
+							var btnDel = '<svg title="Supprimer" id="' + listPeoples[people].getId + '" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
 							if(i%2 == 1){
-								temp += "<tr class='tr__pair' ><td>" + listPeoples[index].getId +  "</td><td>" + listPeoples[index].getLastName + "</td><td>" + listPeoples[index].getFirstName + "</td><td>" + listPeoples[index].getPhone + "</td><td>" + listPeoples[index].getCity + "</td><td>" + listPeoples[index].getPostalCode + "</td><td>" + listPeoples[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
+								temp += "<tr class='tr__pair' ><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 							}
 							else{
-								temp += "<tr><td>" + listPeoples[index].getId +  "</td><td>" + listPeoples[index].getLastName + "</td><td>" + listPeoples[index].getFirstName + "</td><td>" + listPeoples[index].getPhone + "</td><td>" + listPeoples[index].getCity + "</td><td>" + listPeoples[index].getPostalCode + "</td><td>" + listPeoples[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
+								temp += "<tr><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 							}
-							i++;
 						}
 					}
 		
 				}
 				break;
 			case "phone" :
-				for(var index in listPeoples) {
-					if (listPeoples.hasOwnProperty(index)){
-						if(listPeoples[index].getPhone.toLowerCase().indexOf(txt.value.toLowerCase()) != -1){
-							var btnDel = '<svg title="Supprimer" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
+				for(var people in listPeoples) {
+					if (listPeoples.hasOwnProperty(people)){
+						if(listPeoples[people].getPhone.toLowerCase().indexOf(txt.value.toLowerCase()) != -1){
+							i++;
+							var btnDel = '<svg title="Supprimer" id="' + listPeoples[people].getId + '" class="icon icon-bin bin"><use xlink:href="#icon-bin"></use></svg>';
 							if(i%2 == 1){
-								temp += "<tr class='tr__pair' ><td>" + listPeoples[index].getId +  "</td><td>" + listPeoples[index].getLastName + "</td><td>" + listPeoples[index].getFirstName + "</td><td>" + listPeoples[index].getPhone + "</td><td>" + listPeoples[index].getCity + "</td><td>" + listPeoples[index].getPostalCode + "</td><td>" + listPeoples[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
+								temp += "<tr class='tr__pair' ><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 							}
 							else{
-								temp += "<tr><td>" + listPeoples[index].getId +  "</td><td>" + listPeoples[index].getLastName + "</td><td>" + listPeoples[index].getFirstName + "</td><td>" + listPeoples[index].getPhone + "</td><td>" + listPeoples[index].getCity + "</td><td>" + listPeoples[index].getPostalCode + "</td><td>" + listPeoples[index].getAddress + "</td><td>" + btnDel + "</td></tr>";
+								temp += "<tr><td>" + i +  "</td><td>" + listPeoples[people].getLastName + "</td><td>" + listPeoples[people].getFirstName + "</td><td>" + listPeoples[people].getPhone + "</td><td>" + listPeoples[people].getCity + "</td><td>" + listPeoples[people].getPostalCode + "</td><td>" + listPeoples[people].getAddress + "</td><td>" + btnDel + "</td></tr>";
 							}
-							i++;
 						}
 					}
 		
@@ -286,16 +311,24 @@ function search(){
 		if(!i){
 			temp += "<tr><td colspan='8' >...</td></tr>";
 		}
-		document.querySelector('#list_Peoples').innerHTML = temp;
+		document.querySelector('#table_listPeoples').innerHTML = temp;
 	}
 	else{
 		txt.focus();	
 		txt.classList.add('txt-search-error');
 		txt.classList.remove('txt-search-good');
 		txt.style.border = "1px solid red";
-		document.querySelector('#list_Peoples').innerHTML = viewPeoples('table');
+		document.querySelector('#table_listPeoples').innerHTML = viewPeoples('table');
 	}
 }
+function reloadSearchBar(){	
+	var txt = document.querySelector('#txt-search');
+
+	txt.classList.remove('txt-search-error');
+	txt.classList.add('txt-search-good');
+	txt.style.border = "1px solid black";
+}
+
 
 // --------------//
 // --- Close --- //
@@ -327,4 +360,6 @@ document.querySelector('#close_dialogDeletePeople').addEventListener('click', cl
 // --- Search --- //
 document.querySelector('#menu_searchList').addEventListener('click', select_search);
 document.querySelector('#txt-search').addEventListener('keyup', search);
+document.querySelector('#txt-search').addEventListener('click', search);
+document.querySelector('#txt-search').addEventListener('blur', reloadSearchBar);
 document.querySelector('#list-search').addEventListener('change', search);
