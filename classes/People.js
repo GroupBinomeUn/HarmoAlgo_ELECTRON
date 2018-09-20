@@ -1,4 +1,4 @@
-class Peoples {
+class People {
     //constructeur
     constructor(id, lastName, firstName, phone, city, postalCode, address) {
         this.id = id;

@@ -130,6 +130,7 @@ main .svg {
 section {
 	margin: 25px auto;
 	width: 75%;
+	min-height: 100vh;
 }
 section .icon {
 	cursor: pointer;
@@ -215,11 +216,14 @@ section input[type=text], section input[type=number] {
 }
 #list-search{
 	background: #b7ccff;
-	box-shadow: 0px 0px 15px #4f81ff inset;
 }
-#list-search, #txt-search {
+#list-search, #txt-search, #btn_eraseSearch{
 	padding: 5px;
 	margin-right: 5px;
+	box-shadow: 0px 0px 15px #4f81ff inset;
+}
+#btn_eraseSearch{
+	background: #b7ccff;
 }
 
 footer {
