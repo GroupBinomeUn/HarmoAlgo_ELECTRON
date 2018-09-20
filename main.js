@@ -21,7 +21,7 @@ function createWindow () {
   mainWindow.loadFile('index.html')
 
   // Ouvre les DevTools.
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', () => {
     mainWindow = null;

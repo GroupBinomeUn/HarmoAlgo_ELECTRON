@@ -59,4 +59,10 @@ typings/
 
 # next.js build output
 .next
+
+#add for dev
 .idea/
+package-lock.json
+package.json
+TODO.txt
+#.gitignore

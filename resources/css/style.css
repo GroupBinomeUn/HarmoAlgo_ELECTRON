@@ -17,6 +17,13 @@ body{
 	padding-bottom: 6rem;
 	min-height: 100%;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+::-webkit-scrollbar { 
+	display: none; 
+}
 
 a {
 	color: black;
@@ -69,7 +76,7 @@ body header {
 nav {
 	display: flex;
 	flex-wrap: wrap;
-  	flex-direction: row;
+	flex-direction: row;
 }
 
 nav a {
@@ -113,8 +120,8 @@ main h3 {
 	font-size: 8vw;
 }
 main .svg {
-    width: 15em;
-    height: 15em;
+	width: 15em;
+	height: 15em;
 	padding: 2rem;
 	display: flex;
 	padding: 5px;
@@ -123,33 +130,30 @@ main .svg {
 section {
 	margin: 25px auto;
 	width: 75%;
+	min-height: 100vh;
 }
 section .icon {
 	cursor: pointer;
 	display: flex;
-    width: 3em;
-    height: 3em;
+	width: 3em;
+	height: 3em;
 	padding: 5px;
 	padding-left: 7px;
-    border: 1px solid #6692ff;
+	border: 1px solid #6692ff;
 	background: #9ab7ff;
 	border-radius: 5px;
-    color: white;
+	color: white;
 	transition: all 0.2s ease-out;
-}
-section .icon:hover {
-	transition: all 0.2s ease-out;
-    background: #eeeeee;
 }
 section .bin:hover {
 	transition: all 0.2s ease-out;
-    color: red;
-    background: #eeeeee;
+	color: red;
+	background: #c9d8ff;
 }
 section .add:hover {
 	transition: all 0.2s ease-out;
-    color: green;
-    background: #eeeeee;
+	color: green;
+	background: #c9d8ff;
 }
 
 h1 {
@@ -166,6 +170,7 @@ table {
 	border: 1px solid #6692ff;
 	width: 100%;
 	border-radius: 5px;
+	margin-bottom: 55px;
 }
 th {
 	font-weight: bold;
@@ -211,11 +216,14 @@ section input[type=text], section input[type=number] {
 }
 #list-search{
 	background: #b7ccff;
-	box-shadow: 0px 0px 15px #4f81ff inset;
 }
-#list-search, #txt-search {
+#list-search, #txt-search, #btn_eraseSearch{
 	padding: 5px;
 	margin-right: 5px;
+	box-shadow: 0px 0px 15px #4f81ff inset;
+}
+#btn_eraseSearch{
+	background: #b7ccff;
 }
 
 footer {
@@ -231,13 +239,33 @@ footer {
 	left: 0;
 }
 	
+.btn_tr_addPeople{
+	background: #6692ff;
+	cursor: pointer;
+	color: white;
+}
+.btn_tr_addPeople:hover .add{
+	color: green;
+	border: none;
+	background: none;
+}
+.btn_tr_addPeople .add{
+	display: flex;
+	margin: auto;
+	width: 3em;
+	height: 3em;
+	border: none;
+	background: none;
+}
+
+
 /* -------------*/
 /* -- Dialog -- */
 /* -------------*/
 .dialog {
 	background: white;
 	display: none;
-	border: 1px solid #6692ff;
+	border: 2px solid #6692ff;
 	border-radius: 5px;
 	width: 500px;
 	position: fixed;
@@ -245,13 +273,13 @@ footer {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	box-shadow: 0px 0px 15px black;
+	box-shadow: 0px 0px 15px #001c64;
 }
 .dialog .headerDialog {
 	position: relative;
 	height: 26px;
 	background: #6692ff;
-	border-bottom: 1px solid #6692ff;
+	border-bottom: 28px solid #6692ff;
 }
 .dialog .bodyDialog {
 	display: flex;
@@ -273,16 +301,18 @@ footer {
 	font-weight: bold;
 }
 .dialog .close {
+	width: 50px;
 	cursor: pointer;
 	float: right;
 	padding: 5px;
-	border-left: 1px solid #6692ff;
+	border-left: 2px solid #6692ff;
 	background: black;
 	color: white;
 	font-weight: bold;
 	/*border-radius: 0px 5px 0px 0px;*/
 	border-radius: 5px;
 	transition: all 0.2s ease-out;
+	text-align: center;
 }
 .dialog .close:hover {
 	background: red;
@@ -295,8 +325,4 @@ footer {
 }
 .dialog .bodyBtn {
 	margin: 5px;
-}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
 }
