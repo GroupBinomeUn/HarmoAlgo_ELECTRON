@@ -2,7 +2,9 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 const {dialog} = require('electron').remote;
-var serialize = require('serialize-javascript');
+var serialize = require('serialize-to-js').serialize;
+var deserialize = require('serialize-to-js').deserialize;
+var fs = require('fs');
 
 //dialog.showErrorBox('Erreur !', 'L\'application a rencontré une erreur. Votre ordinateur va s\'auto-détruire dans 10 secondes.');4
 
@@ -225,13 +227,30 @@ function closeDialogDeletePeople() {
 // ---Files --- //
 // -------------//
 function loadFile(){
-	//deserialize(str, [context])
+	var jsonFile = dialog.showOpenDialog({properties: ['openFile'], filters: [{ name: 'Json', extensions: ['json']}]}, function (fileNames) {
+		if (fileNames === undefined) return;
+		var fileName = fileNames[0];
+		var file = fs.readFileSync(fileName, 'utf-8');
+
+		var jsonFile = deserialize(file);
+
+		for (var i = 0; i < jsonFile.length; i++) {
+			var thePeople = new Peoples(lastId++, jsonFile[i].lastName, jsonFile[i].firstName, jsonFile[i].phone, jsonFile[i].city, jsonFile[i].postalCode, jsonFile[i].address);
+			listPeoples.push(thePeople);
+		}
+		update();
+	});
 }
+
 function saveFile(){
-	var a = document.querySelector('#menu_saveFile');
-	var file = new Blob([serialize(listPeoples)], {type: 'text/plain'});
-	a.href = URL.createObjectURL(file);
-	a.download = 'Peoples.json';
+	var file_path = dialog.showSaveDialog({properties: ['saveFile'], filters: [{ name: 'Json', extensions: ['json']}]});
+
+	if(file_path) {
+		file = [serialize(listPeoples)];
+		fs.writeFile(file_path, file, function (err) {
+			dialog.showMessageBox({title: "Sauvegarde", message: "Fichier sauvegardé ! 🦄", buttons: ["OK"] });
+		});
+	}
 }
 
 // ---------------//
