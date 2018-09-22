@@ -41,6 +41,7 @@ function addPeople() {
 		document.querySelector('#dialog_deletePeople').style.display = "none";
 		document.querySelector('#table_listPeoples').innerHTML = viewPeoples('table');
 		
+		fileChangeOrNew = true;
 		clearAddPeople();
 	}
 }
@@ -147,7 +148,7 @@ function select_deletePeople() {
 		}
 	}	
 
-	autoCloseDialogDeletePeople();
+	fileChangeOrNew = true;
 	update();
 }
 function table_deletePeople() {
@@ -157,14 +158,20 @@ function table_deletePeople() {
 		listPeoples.splice(index, 1);
 	}
 
+	fileChangeOrNew = true;
 	autoCloseDialogDeletePeople();
 	update();
-	//###>>>créer un liste temp pour la recherche afin d'autoriser la suppression
 }
 function autoCloseDialogDeletePeople(){
 	if(!listPeoples.length){
 		closeDialogDeletePeople()
 	}
+}
+function select_deleteAllPeople(){
+	listPeoples = [];
+	fileChangeOrNew = true;
+	autoCloseDialogDeletePeople();
+	update();
 }
 
 
@@ -268,8 +275,9 @@ function saveFile(){
 	if(file_path) {
 		file = [serialize(listPeoples)];
 		fs.writeFile(file_path, file, function (err) {
-			dialog.showMessageBox({title: "Sauvegarde", message: "Fichier sauvegardé ! 🦄", buttons: ["OK"] });
+			//dialog.showMessageBox({title: "Sauvegarde", message: "Fichier sauvegardé ! 🦄", buttons: ["OK"] });
 		});
+		fileChangeOrNew = false;
 	}
 }
 
@@ -379,18 +387,63 @@ function reloadSearchBar(){
 }
 
 
+// -------------//
+// --- New --- //
+// ------------//
+function newAddressBook(){
+	if(fileChangeOrNew){
+		dialog.showMessageBox({
+			type: 'question',
+			buttons: ['Oui', 'Non'],
+			title: 'Êtes-vous sûr ?',
+			message: 'Les données non-sauvgardé seront perdu, êtes vous sûr de créer un nouveau carnet d\'adresse ?'
+		}, function (response) {
+			if(!response){
+				listPeoples = [];
+				fileChangeOrNew = false;
+				update();
+			}
+		});
+	}
+	else{
+		listPeoples = [];
+		fileChangeOrNew = false;
+		update();
+	}
+}
+
+
+// -------------------//
+// --- undo/redo --- //
+// -----------------//
+
+
 // --------------//
 // --- Close --- //
 // --------------//
 function closeApp(){
-    window.close();
+	if(fileChangeOrNew){
+		dialog.showMessageBox({
+			type: 'question',
+			buttons: ['Oui', 'Non'],
+			title: 'Êtes-vous sûr ?',
+			message: 'Les données non-sauvgardé seront perdu, êtes vous sûr de vouloir quitter ?'
+		}, function (response) {
+			if(!response){
+				window.close();
+			}
+		});
+	}
+	else{
+		window.close();
+	}
 }
 
 // -------------//
 // --- Home --- //
 // -------------//
 function home(){
-	document.querySelector('#list').scrollIntoView({
+	document.querySelector('#first-main').scrollIntoView({
 		behavior: 'smooth'
 	});
 }
@@ -415,6 +468,9 @@ document.querySelector('#menu_close').addEventListener('click', closeApp);
 document.querySelector('#up').addEventListener('click', home);
 document.querySelector('#btn_eraseSearch').addEventListener('click', eraseSearch);
 document.querySelector('#first-main').addEventListener('click', enterInTheNewWorld);
+document.querySelector('#new-address-book').addEventListener('click', newAddressBook);
+//document.querySelector('#undo').addEventListener('click', undo);
+//document.querySelector('#redo').addEventListener('click', redo);
 
 // --- Dialog - Add People --- //
 document.querySelector('#btn_addPeople').addEventListener('click', addPeople);
@@ -424,6 +480,7 @@ document.querySelector('#btn_clearAddPeople').addEventListener('click', clearAdd
 // --- Dialog - Delete People --- //
 document.querySelector('#btn_deletePeople').addEventListener('click', select_deletePeople);
 document.querySelector('#close_dialogDeletePeople').addEventListener('click', closeDialogDeletePeople);
+document.querySelector('#btn_deleteAllPeople').addEventListener('click', select_deleteAllPeople);
 
 // --- Search --- //
 document.querySelector('#menu_searchList').addEventListener('click', select_search);
@@ -450,4 +507,15 @@ function reloadBtnArray(){
 	}
 }
 
+/* si l'application à subit des changements */
+function ifAppDiff(){
+	if(fileChangeOrNew && listPeoples.length > 0){		
+		document.querySelector('#menu_saveFile').style.color = "#cd8500";
+	}
+	if(!fileChangeOrNew){		
+		document.querySelector('#menu_saveFile').style.color = "#003bcd";
+	}
+}
+
 setInterval(reloadBtnArray, 10);
+setInterval(ifAppDiff, 10);

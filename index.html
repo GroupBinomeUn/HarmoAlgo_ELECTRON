@@ -24,22 +24,37 @@
 				<ul>
 					<li>
 						<a id="up" title="Home" >
-							<svg class="icon icon-home"><use xlink:href="#icon-home"></use></svg>
+							<svg class="icon icon-home3"><use xlink:href="#icon-home3"></use></svg>
 						</a>
 					</li>
 					<li>
 						<a href="index.html" title="Actualiser" >
-							<svg class="icon icon-loop"><use xlink:href="#icon-loop"></use></svg>
+							<svg class="icon icon-loop2"><use xlink:href="#icon-loop2"></use></svg>
+						</a>
+					</li>
+					<li>
+						<a id="new-address-book" title="Nouveau carnet d'adresse" >
+							<svg class="icon icon-plus"><use xlink:href="#icon-plus"></use></svg>
+						</a>
+					</li>
+					<li>
+						<a id="undo" title="Annuler" >
+							<svg class="icon icon-undo2"><use xlink:href="#icon-undo2"></use></svg>
+						</a>
+					</li>
+					<li>
+						<a id="redo" title="Rétablir" >
+							<svg class="icon icon-redo2"><use xlink:href="#icon-redo2"></use></svg>
 						</a>
 					</li>
 					<li>
 						<a id="menu_loadFile" title="Charger" >
-							<svg class="icon icon-upload"><use xlink:href="#icon-upload"></use></svg>
+							<svg class="icon icon-download3"><use xlink:href="#icon-download3"></use></svg>
 						</a>
 					</li>
 					<li>
 						<a id="menu_saveFile" title="Sauvegarder" >
-							<svg class="icon icon-download"><use xlink:href="#icon-download"></use></svg>
+							<svg class="icon icon-upload3"><use xlink:href="#icon-upload3"></use></svg>
 						</a>
 					</li>
 					<li>
@@ -58,7 +73,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" id="menu_close" title="Quitter" >
+						<a id="menu_close" title="Quitter" >
 							<svg class="icon icon-exit"><use xlink:href="#icon-exit"></use></svg>
 						</a>
 					</li>
@@ -86,7 +101,7 @@
 				<tr><td colspan="8" >...</td></tr>
 				<tr class="btn_tr_addPeople" id="svg_addPeople" title="Ajouter un contact" ><td colspan="8" ><svg class="icon icon-user-plus add"><use xlink:href="#icon-user-plus"></use></svg></td></tr>
 			</table>
-			
+		
 		</section>
 
         <div class="dialog" id="dialog_addPeople" >
@@ -127,10 +142,9 @@
 					<option value="null" disabled selected >...</option>
 				</select>
 				<br>
-				<input id="btn_deletePeople" type="submit" value="Supprimer" />
+				<input id="btn_deletePeople" type="submit" value="Supprimer" /> <input id="btn_deleteAllPeople" type="submit" value="Vider le carnet d'adresse" />
 			</div>
 		</div>
-		
 		<footer>
 			<p>By IUT Binome Team | All Rights Reserved.</p>
 		</footer>
