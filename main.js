@@ -10,7 +10,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 720,
-    icon: 'ressources/img/unicorn.png',
+    icon: 'ressources/svg/png/address-book.png',
     title: "Carnet d'adresses",
     center: true,
     minWidth: 1280,
