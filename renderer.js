@@ -138,11 +138,6 @@ function reloadBtnArray(){
 
 /* si l'application à subit des changements */
 function ifAppDiff(){
-	if(tempsUndoRedoActionPeoples.length){
-		for(var item in tempsUndoRedoActionPeoples) {
-			console.log(tempsUndoRedoActionPeoples[item]);
-		}
-	}
 	if(fileChangeOrNew){
 		document.querySelector('#menu_saveFile').style.color = "#cd8500";
 	}

@@ -29,7 +29,6 @@ function select_deletePeople() {
 		var index = listPeoples.findIndex(obj => obj.id == idSelect);
 		
 		if (index >= 0) {
-			tempsUndoRedoActionPeoples.push([listPeoples[index].getId, listPeoples[index].getLastName, listPeoples[index].getFirstName, listPeoples[index].getPhone, listPeoples[index].getCity, listPeoples[index].getPostalCode, listPeoples[index].getAddress], [(index + tempsUndoRedoActionPeoples.length)], ['rm']);
 			listPeoples.splice(index, 1);
 		}
     }

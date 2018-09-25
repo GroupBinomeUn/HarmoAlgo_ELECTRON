@@ -30,7 +30,7 @@ function loadFile(){
 			if(!cancel && peopleIsExist && !yesForEveryone && !noForEveryone){
 				var response = dialog.showMessageBox({
 					type: 'warning',
-					buttons: ['Oui', 'Oui à tout', 'Non', 'Non à tout', 'Remplacer', 'Annuler'],
+					buttons: ['Oui', 'Oui pout tout', 'Non', 'Non pour tout', 'Annuler'],
 					title: 'Êtes-vous sûr ?',
 					message: (jsonFile[i].firstName + ' ' + jsonFile[i].lastName + ' est déja dans le carnet, voulez-vous importer tout de même cette personne ?')
 				});
@@ -38,6 +38,7 @@ function loadFile(){
 					case 0:
 						var thePeople = new People(lastId++, jsonFile[i].lastName, jsonFile[i].firstName, jsonFile[i].phone, jsonFile[i].city, jsonFile[i].postalCode, jsonFile[i].address);
 						listPeoples.push(thePeople);
+						fileChangeOrNew = true;
 					break;
 					case 1:
 						yesForEveryone = true;
@@ -46,10 +47,6 @@ function loadFile(){
 						noForEveryone = true;
 					break;
 					case 4:
-						replace = true;
-					break;
-					case 5:
-						console.log('#replace');
 						cancel = true;
 					break;
 				}
@@ -58,14 +55,15 @@ function loadFile(){
 			if(!noForEveryone && yesForEveryone){
 				var thePeople = new People(jsonFile[i].id, jsonFile[i].lastName, jsonFile[i].firstName, jsonFile[i].phone, jsonFile[i].city, jsonFile[i].postalCode, jsonFile[i].address);
 				listPeoples.push(thePeople);
+				fileChangeOrNew = true;
 			}
 
 			if(!peopleIsExist){
 				var thePeople = new People(lastId++, jsonFile[i].lastName, jsonFile[i].firstName, jsonFile[i].phone, jsonFile[i].city, jsonFile[i].postalCode, jsonFile[i].address);
 				listPeoples.push(thePeople);
+				fileChangeOrNew = true;
 			}
 		}
-		fileChangeOrNew = true;
 		update();
 	});
 }
