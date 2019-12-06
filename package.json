@@ -25,6 +25,6 @@
     "electron": "^2.0.9"
   },
   "dependencies": {
-    "serialize-to-js": "^1.2.1"
+    "serialize-to-js": "^3.0.1"
   }
 }
