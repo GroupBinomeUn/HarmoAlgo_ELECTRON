@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/GroupBinomeUn/HarmoAlgo_ELECTRON#readme",
   "devDependencies": {
-    "electron": "^2.0.9"
+    "electron": "^9.4.0"
   },
   "dependencies": {
     "serialize-to-js": "^3.0.1"
